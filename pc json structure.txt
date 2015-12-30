@@ -1,0 +1,152 @@
+Name
+Race
+	Name
+	Type (string)
+	array of effect
+Gender
+Alignment (string)
+Appearance details
+	Height
+	Weight
+	etc...
+Forms (array of:)
+	Name
+	Assigned/rolled ability scores
+		STR
+		DEX
+		CON
+		INT
+		WIS
+		CHA
+	Size category (Diminutive ... Colossal)
+	Natural armor [0]
+	Can use items? ([true]/false)
+	Base land speed (int)
+Automatic Languages (array of string)
+Bonus Languages (array of string)
+Class Levels (array of:)
+	Class name (string...?)
+	HP roll
+	Skill points (array of (string, int))
+	Ability to increment (STR/DEX/CON/INT/WIS/CHA/[none])
+Level adjust
+XP log (array of (string, int))
+Classes (array of:)
+	Name
+	BAB (none/slow/medium/fast)
+	Base Fort save (slow/fast)
+	Base Ref save (slow/fast)
+	Base Will save (slow/fast)
+	Spellcasting ability (STR/DEX/CON/INT/WIS/CHA/[none])
+	Armor proficiencies (all true/false)
+		Light
+		Medium
+		Heavy
+		Tower shields
+		Other shields
+	Weapon proficiencies (all true/false)
+		Simple melee
+		Martial melee
+		Simple ranged
+		Martial ranged
+	Class skills (array of string)
+	Class features (array of:)
+		Name
+		Effects (array)
+
+Effects (array of:)
+	Form
+	Stat to modify
+	Type (string)
+	Modifier (formula)
+	From item (true/false)
+	Application status (always/dynamic/dependent)
+
+Feats (array of:)
+	Name
+	Effects (array)
+
+Default school/save map (map string to STR/DEX/CON/INT/WIS/CHA)
+Maneuvers (array of:)
+	Name
+	Discipline (string)
+	Type (strike/boost/counter/other)
+	Action (full-rd/std/swift/imm)
+	Save (fort/ref/will, STR/DEX/CON/INT/WIS/CHA)
+	Level
+	Description
+
+Weapons (array of:)
+	Name
+	Groups (array of string)
+	Properties (array of string)
+	Finessable (true/false)
+	Type (simple/martial/exotic)
+	Effort category (see sheet :-P)
+	Range increment
+	Reach (true/false)
+	Min critical threat
+	Critical multiplier
+	2-weapon fighting mode
+	Damage die
+	Damage type (string)
+	Weight
+Armor (array of:)
+	Name
+	Properties
+	Weight
+	Armor bonus
+	Max Dex
+	Type (light/medium/heavy)
+	Armor check penalty
+Shields (array of:)
+	Name
+	Properties
+	Weigh
+	Shield bonus
+	Max dex
+	Type (tower/other)
+	Armor check penalty
+Other Item
+	Name
+	Properties
+Item properties (array of:)
+	Name
+	Effects
+
+Item groups (array of:)
+	Name (string)
+Inventory (array of:)
+	Name (string)
+	Location
+	Item group
+	Type (weapon/armor/shield/other)
+Money log (array of (string, int))
+
+Spells per day (array of:)
+	Class name
+	map spell level to number
+
+Spells (map class name to array of:)
+	Spell name
+	Page reference
+	Casting time
+	Level
+	Save (string)
+	SR (true/false)
+	Range (string)
+	School
+	Subschool
+	Descriptors (array of string)
+	Duration (string)
+	Components (string)
+	Description (string)
+
+
+
+## framework data -- most of this will have a long list of
+## sensible defaults
+Skills (array of:)
+	Name
+	Category
+

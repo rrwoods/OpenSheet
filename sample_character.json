@@ -1,0 +1,89 @@
+{
+	"Name": "Alth Shrenan",
+	"Race": {
+		"Name": "Whisper Gnome",
+		"Type": "Humanoid (gnome)"
+	},
+	"Gender": "Male",
+	"Alignment": "LN",
+	"Appearance": [
+		"3' 10\"", "38 lbs.", "Pale skin", "Black hair", "Blue eyes"
+	],
+	"Forms": [
+		{
+			"Name": "Normal",
+			"STR": 12,
+			"DEX": 16,
+			"CON": 14,
+			"INT": 10,
+			"WIS": 16,
+			"CHA": 8,
+			"Size category": "Small",
+			"Natural armor": 0,
+			"Items": true,
+			"Base land speed": 30,
+		}
+	],
+	"Automatic Languages": ["Common", "Gnome"],
+	"Bonus Languages": ["Terran"],
+	"Class Levels": [
+		{
+			"Name": "Swordsage",
+			"HP roll": 8,
+			"Skill points": {
+				"Sense Motive": 2,
+				"Stealth": 4,
+				"Acrobatics": 4,
+				"Concentration": 4,
+				"Perception": 4,
+				"Knowledge (history)": 4,
+				"Speak Language": 2,
+			}
+		},
+		{
+			"Name": "Swordsage",
+			"HP roll": 5,
+			"Skill points": {
+				"Sense Motive": 1,
+				"Stealth": 1,
+				"Acrobatics": 1,
+				"Concentration": 1,
+				"Perception": 1,
+				"Knowledge (history)": 1,
+			}
+		},
+		{
+			"Name": "Swordsage",
+			"HP roll": 8,
+			"Skill points": {
+				"Sense Motive": 1,
+				"Stealth": 1,
+				"Acrobatics": 1,
+				"Concentration": 1,
+				"Perception": 1,
+				"Skill trick": 2,
+			}
+		},
+		{
+			"Name": "Swordsage",
+			"HP roll": 5,
+			"Skill points": {
+				"Stealth": 1,
+				"Acrobatics": 1,
+				"Concentration": 1,
+				"Perception": 1,
+				"Knowledge (history)": 2,
+			}
+		},
+	],
+	"Level adjust": 0,
+
+	"XP log": [
+		{"Notes": "emerald peak ruins exploration, killing kareem, dead drunk hooker", "XP": 1100},
+		{"Notes": "SKT crash, discovered scouring, Yuan-Ti encounter at the Keep", "XP": 800},
+		{"Notes": "clover city mausoleum part 1", "XP": 1200},
+		{"Notes": "clover city mausoleum part 2, jungle (?) part 1", "XP": 0},
+		{"Notes": "jungle part 2, artificial environments, chamber of repose", "XP": 2900},
+		{"Notes": "rainbow six: planning stage", "XP": 0}
+	]
+}
