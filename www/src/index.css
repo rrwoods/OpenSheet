@@ -1,0 +1,107 @@
+/* Colors */
+/* 
+	Main Background (light blue): #D7DDD7
+	Logo Background / sidebar active (tan): #C9AC75
+	Sidebar Background / logo text (dark brown): #341E16
+	Sidebar hover / border-bottom (orange): #9B582A
+	Sidebar border-top (dark gray): #222 
+	Active / hover text (black): #000
+*/
+
+/* Global */
+
+html, body {
+	background-color: #D7DDD7;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+div {
+	box-sizing: border-box;
+}
+
+div#container {
+	overflow: auto;
+	width: 100%;
+	height: 100%;
+}
+
+/* Sidebar */
+
+div#main-sidebar {
+	width: 220px;
+	height: 100%;
+	position: fixed;
+	left: 0px;
+	top:  0px;
+	background-color: #341E16;
+	margin: 0px;
+	padding: 0px;
+	overflow-y: auto;
+	border-right: 1px solid black;
+}
+
+div#main-sidebar #logo {
+	width: 100%;
+	height: 100px;
+	background-color: #C9AC75;
+	font-family: "Helvetica", sans-serif;
+	text-align: center;
+	line-height: 95px;
+	font-size: 32;
+	font-weight:bold;
+	color:#341E16;
+}
+
+div#main-sidebar .button {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	cursor: pointer;
+	width: 100%;
+	height: 45px;
+	position: relative;
+	left: 0px;
+	top: 0px;
+	margin: 0px;
+	padding: 4px 8px;
+	color: #C9C999;
+	font-family: "Helvetica", sans-serif;
+	text-align: center;
+	line-height: 40px;
+	font-size: 18;
+	border-bottom: 1px solid #9B582A;
+	border-top: 1px solid #222;
+}
+
+div#main-sidebar .active {
+	background-color: #C9AC75;
+	color: black;
+}
+
+div#main-sidebar .button:hover {
+	background-color: #9B5A2A;
+	color: black;
+}
+
+/* Main content */
+
+div#main-body {
+	float: right;
+	width: 100%;
+	padding: 0 0 0 240px;
+}
+
+/* Tab content */
+div.tab-body {
+	width: 100%;
+	display: none;
+	margin: 0;
+	padding: 0;
+}
