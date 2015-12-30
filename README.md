@@ -1,0 +1,1 @@
+This is an open-source in-browser character sheet manager for D&D 3.5.  We hope to support D&D 5e in the future and we hope also to have D&D NPC tools in the future.
