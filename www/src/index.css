@@ -141,8 +141,15 @@ table {
 	font-family: "Helvetica", "Arial", sans-serif;
 }
 
-.add-button {
+table.standard td.add-button {
 	background-color: #43431F;
+	color: white;
+	text-align: center;
+	width:23px;
+}
+
+table.standard th.add-button {
+	background-color: #222;
 	color: white;
 	text-align: center;
 	width:23px;
@@ -166,7 +173,7 @@ table.standard {
 	display: inline-block;
 }
 
-table.standard th, table.standard .rh {
+table.standard th {
 	background-color: #222;
 	color:#fff;
 	font-weight: normal;

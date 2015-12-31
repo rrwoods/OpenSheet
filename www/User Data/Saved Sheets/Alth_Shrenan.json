@@ -7,13 +7,9 @@
 			"Basics" : 
 			{
 				"Name": "Alth Shrenan",
-				"Race": 
-				{
-					"Name": "Whisper Gnome",
-					"Type": "Humanoid (gnome)"
-				},
+				"Race": "Whisper Gnome",
 				"Gender": "Male",
-				"Alignment": "LN",
+				"Alignment": "Lawful Neutral",
 				"Appearance": 
 				[
 					"3' 10\"", "38 lbs.", "Pale skin", "Black hair", "Blue eyes"
@@ -27,13 +23,26 @@
 					"INT": 10,
 					"WIS": 16,
 					"CHA": 8,
-					"Size category": "Small",
-					"Natural armor": 0,
-					"Items": true,
-					"Base land speed": 30
+					"Speed": 30,
+					"Size": "Small",
+					"Weight": "38 lbs",
+					"NA": 0
+				},
+				{
+					"Name": "Bear",
+					"STR": 2,
+					"DEX": 6,
+					"CON": 4,
+					"INT": 1,
+					"WIS": 6,
+					"CHA": 18,
+					"Speed": 20,
+					"Size": "Large",
+					"Weight": "238 lbs",
+					"NA": 1
 				}],
-				"Automatic Languages": ["Common", "Gnome"],
-				"Bonus Languages": ["Terran"],
+				"Auto_Lang": ["Common", "Gnome"],
+				"Bonus_Lang": ["Terran"],
 				"Class Levels": 
 				[{
 					"Name": "Swordsage",
