@@ -2,9 +2,23 @@
 
 var OPENSHEET = OPENSHEET || {};
 
-/* Tab handling */
+/* File Handling */
+OPENSHEET.file = {
+	dataObjects: {},
 
-OPENSHEET.tab = {
+	loadFile: function(path) {
+		$.getJSON(path, 'json', function(data) {
+				OPENSHEET.file.dataObjects[path] = data;
+				OPENSHEET.layout.generateLayout();
+		}).fail(function(jqXHR) {
+			alert("File load failed! Error " + jqXHR.status);
+		});
+	}
+}
+
+/* General Layout */
+
+OPENSHEET.layout = {
 	currentTab: "",
 	lastTab: "",
 
@@ -27,28 +41,50 @@ OPENSHEET.tab = {
 		});
 	},
 
-	createTabs: function(groups) {		
-		for (group of groups) {
-			for (tab of group.tabs) {
-				// Create buttons
-				$("#main-sidebar").append('<div class="button" id="'+ group.name +'_'+ tab.name +'-btn">'+ tab.displayName +'</div>');
+	createTabs: function(groupName, tabs) {
+		var i = 0;
+		for (tab in tabs) {			
+			// Create buttons
+			$("#main-sidebar").append('<div class="button" id="'+ groupName +'_tab' + i +'-btn">' + tab +'</div>');
 
-				// Create pages
-				$("#main-body").append('<div class="tab-body" id="'+ group.name +'_'+ tab.name +'-body"><p>This is '+ group.name + "_" + tab.displayName +'.</p></div>');
+			// Create pages
+			$("#main-body").append('<div class="tab-body" id="'+ groupName +'_tab' + i +'-body"><p>This is '+ groupName + "_" + tab +'.</p></div>');
 
-				// Create button handlers to tie buttons to pages
-				this.createHandler(group.name + "_" + tab.name);
-			}
+			// Create button handlers to tie buttons to pages
+			this.createHandler(groupName + "_tab" + i);
+
+			++i;
 		}
 	},
+
+	generateLayout: function() {
+		var i = 0;
+		for (sheet in OPENSHEET.file.dataObjects) {
+			if(!OPENSHEET.file.dataObjects[sheet].name) {
+				this.createTabs("group"+i, OPENSHEET.file.dataObjects[sheet].groups[i].tabs)
+			} else {
+				// Todo: collapsible group labels
+			}
+
+			++i;
+		}
+	}
 }
 
 /* Ready, set, go! */
 
 $(document).ready(function() {
-	var groups = [{name: "group1", tabs: [{name: "tab1", displayName: "Tab 1"}, {name: "tab2", displayName: "Tab 2"}, {name: "tab3", displayName: "Tab 3"}, {name: "tab4", displayName: "Tab 4"}, {name: "tab5", displayName: "Tab 5"}]}]; 	
-	
-	OPENSHEET.tab.createTabs(groups);
+	$.ajaxSetup({
+		beforeSend: function(xhr) {
+			if (xhr.overrideMimeType) {
+		 		xhr.overrideMimeType("application/json");
+			}
+		},
 
-	// TODO: Draw the rest of the owl
+		cache: false
+	});
+
+	var fileToLoad = "User Data/Saved Sheets/Alth_Shrenan.json";
+	OPENSHEET.file.loadFile(fileToLoad);
 }); 
+
