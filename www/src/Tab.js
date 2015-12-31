@@ -76,6 +76,8 @@ function Group(name, fromFile) {
 }
 
 Group.prototype = {
+	constructor: Group,
+
 	addTabs: function(tabData) {
 		var tabName, prefix;
 
@@ -127,69 +129,14 @@ BasicsTab.prototype.populateTab = function() {
 	// Gender Race (Alignment)
 	$(bodyTab).append(
 		h3(
-			span(this.data.Gender,          qn+'_Gender') + ' ' +
-			span(this.data.Race,            qn+'_Race') + ' ' +
-			'('+span(this.data.Alignment,   qn+'_Alignment')+')',
+			span(this.data.Alignment, qn+'_Alignment') + ' ' +
+			span(this.data.Gender,    qn+'_Gender') + ' ' +
+			span(this.data.Race,      qn+'_Race'),
 		qn+'_Subtitle')
 	);
 
-	// Forms table
-	var buildFormsTableRows = function(data) {
-		toReturn = "";
-
-		for (i=0; i<data.Forms.length; ++i) {
-			console.log(i);
-			form = data.Forms[i];
-			toReturn +=
-				tr(
-					th(form.Name, 'wide-cell') +
-					td(form.STR, 'thin-cell') +
-					td(form.DEX, 'thin-cell') +
-					td(form.CON, 'thin-cell') +
-					td(form.INT, 'thin-cell') +
-					td(form.WIS, 'thin-cell') +
-					td(form.CHA, 'thin-cell') +
-					td(form.Speed, 'medium-cell') +
-					td(form.Size, 'medium-cell') +
-					td(form.Weight, 'medium-cell') +
-					td(form.NA, 'medium-cell') +
-					td('', 'spacer-small no-border no-background') +
-					(i==data.Forms.length-1 ? 
-						td('+', 'no-border add-button') : 
-						td('', 'no-border no-background' )
-					)
-				);
-		}
-
-		return toReturn;
-	}
-
 	$(bodyTab).append(
-		div(
-			table(
-				thead(
-					tr(
-						th('', 'wide-cell') +
-						th('STR', 'thin-cell') +
-						th('DEX', 'thin-cell') +
-						th('CON', 'thin-cell') +
-						th('INT', 'thin-cell') +
-						th('WIS', 'thin-cell') +
-						th('CHA', 'thin-cell') +
-						th('Speed', 'medium-cell') +
-						th('Size', 'medium-cell') +
-						th('Weight', 'medium-cell') +
-						th('Nat. Armor', 'medium-cell') +
-						th('', 'spacer-small no-border no-background') +
-						th('', 'no-border no-background')
-					)
-				),
-				tbody(
-					buildFormsTableRows(this.data)
-				),
-				'',
-			qn+'_Forms', 'standard'), // /table
-		'', 'table-container') // /div
+		div(p("forms table here"))
 	);	
 
 	// Languages
@@ -206,90 +153,7 @@ BasicsTab.prototype.populateTab = function() {
 		'', '', 'invisible')
 	);
 
-	// Levels table
-	var buildSkillColumns = function(data) {
-		toReturn = "";
-
-		for (i=0; i<data.Forms.length; ++i) {
-			console.log(i);
-			form = data.Forms[i];
-			toReturn +=
-				tr(
-					th(form.Name, 'wide-cell') +
-					td(form.STR, 'thin-cell') +
-					td(form.DEX, 'thin-cell') +
-					td(form.CON, 'thin-cell') +
-					td(form.INT, 'thin-cell') +
-					td(form.WIS, 'thin-cell') +
-					td(form.CHA, 'thin-cell') +
-					td(form.Speed, 'medium-cell') +
-					td(form.Size, 'medium-cell') +
-					td(form.Weight, 'medium-cell') +
-					td(form.NA, 'medium-cell') +
-					td('', 'spacer-small no-border no-background') +
-					(i==data.Forms.length-1 ? 
-						td('+', 'no-border add-button') : 
-						td('', 'no-border no-background' )
-					)
-				);
-		}
-
-		return toReturn;
-	}
-
-	var buildLevelTableRows = function(data) {
-		toReturn = "";
-
-		for (i=0; i<data.Forms.length; ++i) {
-			console.log(i);
-			form = data.Forms[i];
-			toReturn +=
-				tr(
-					th(form.Name, 'wide-cell') +
-					td(form.STR, 'thin-cell') +
-					td(form.DEX, 'thin-cell') +
-					td(form.CON, 'thin-cell') +
-					td(form.INT, 'thin-cell') +
-					td(form.WIS, 'thin-cell') +
-					td(form.CHA, 'thin-cell') +
-					td(form.Speed, 'medium-cell') +
-					td(form.Size, 'medium-cell') +
-					td(form.Weight, 'medium-cell') +
-					td(form.NA, 'medium-cell') +
-					td('', 'spacer-small no-border no-background') +
-					(i==data.Forms.length-1 ? 
-						td('+', 'no-border add-button') : 
-						td('', 'no-border no-background' )
-					)
-				);
-		}
-
-		return toReturn;
-	}
-
 	$(bodyTab).append(
-		div(
-			table(
-				thead(
-					tr(
-						td('', 'no-border', 'colspan="4"')
-						td('Skill Points (n Spent)', 'black-border', 'colspan="8"')
-					) +
-					tr(
-						th('Classes', 'wide-cell') +
-						th('Lvl', 'thin-cell') +
-						th('HP Rolls', 'medium-cell') +
-						th('+Abl', 'thin-cell') +
-						buildSkillCols(this.data) +
-						th('', 'spacer-small no-border no-background') +
-						th('+', 'add-button no-border')
-					)
-				),
-				tbody(
-					buildFormsTableRows(this.data)
-				),
-				'',
-			qn+'_Levels', 'standard'), // /table
-		'', 'table-container') // /div
+		div(p("class levels table here"))
 	);	
 }

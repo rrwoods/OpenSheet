@@ -120,7 +120,9 @@ function Table(id = "", classString = "") {
 	this.width = 0;
 }
 
-Table.prototype {
+Table.prototype = {
+	constructor: Table,
+
 	addSection: function(type, rows = []) {
 		for(row in rows) {
 			if(this.width == null) {
@@ -146,7 +148,7 @@ Table.prototype {
 		}
 
 		return false;
-	}
+	},
 
 	addRow: function(section, index, cells) {
 		if(cells.length != this.width && this.width != 0) {
@@ -161,10 +163,10 @@ Table.prototype {
 		}
 
 		return false;
-	}
+	},
 
 	addCol: function(index, cells) {
-		if(index >= 0 && <= this.width) {
+		if(index >= 0 && index <= this.width) {
 			var i = 0;
 			for(section in this.contents) {
 				for(row of this.contents[section]) {
@@ -177,7 +179,7 @@ Table.prototype {
 		}
 
 		return false;
-	}
+	},
 
 	print: function() {
 		toReturn = "<table" + ifID(this.id) + ifClasses(this.classes) + ">\n";
