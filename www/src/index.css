@@ -31,7 +31,7 @@ div#container {
 /* Sidebar */
 
 div#main-sidebar {
-	width: 220px;
+	width: 240px;
 	height: 100%;
 	position: fixed;
 	left: 0px;
@@ -95,7 +95,7 @@ div#main-sidebar .button:hover {
 div#main-body {
 	float: right;
 	width: 100%;
-	padding: 0 0 0 240px;
+	padding: 0 0 0 260px;
 }
 
 /* Tab content */

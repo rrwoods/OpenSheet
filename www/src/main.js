@@ -41,17 +41,26 @@ OPENSHEET.layout = {
 		});
 	},
 
-	createTabs: function(groupName, tabs) {
+	createTabs: function(groupName, tabs, shouldCreateSummary) {
 		var i = 0;
+		var prefix = groupName + "_tab";
+
+		if(shouldCreateSummary) {
+			$("#main-sidebar").append('<div class="button" id="'+ prefix + i +'-btn">Summary</div>');
+			$("#main-body").append('<div class="tab-body" id="'+ prefix + i +'-body"><p>This is '+ groupName + '_Summary.</p></div>');
+			this.createHandler(prefix + i);
+			++i;
+		}
+
 		for (tab in tabs) {			
 			// Create buttons
-			$("#main-sidebar").append('<div class="button" id="'+ groupName +'_tab' + i +'-btn">' + tab +'</div>');
+			$("#main-sidebar").append('<div class="button" id="'+ prefix + i +'-btn">' + tab +'</div>');
 
 			// Create pages
-			$("#main-body").append('<div class="tab-body" id="'+ groupName +'_tab' + i +'-body"><p>This is '+ groupName + "_" + tab +'.</p></div>');
+			$("#main-body").append('<div class="tab-body" id="'+ prefix + i +'-body"><p>This is '+ groupName + "_" + tab +'.</p></div>');
 
 			// Create button handlers to tie buttons to pages
-			this.createHandler(groupName + "_tab" + i);
+			this.createHandler(prefix + i);
 
 			++i;
 		}
@@ -61,7 +70,8 @@ OPENSHEET.layout = {
 		var i = 0;
 		for (sheet in OPENSHEET.file.dataObjects) {
 			if(!OPENSHEET.file.dataObjects[sheet].name) {
-				this.createTabs("group"+i, OPENSHEET.file.dataObjects[sheet].groups[i].tabs)
+
+				this.createTabs("group"+i, OPENSHEET.file.dataObjects[sheet].groups[i].tabs, true)
 			} else {
 				// Todo: collapsible group labels
 			}
@@ -86,5 +96,7 @@ $(document).ready(function() {
 
 	var fileToLoad = "User Data/Saved Sheets/Alth_Shrenan.json";
 	OPENSHEET.file.loadFile(fileToLoad);
+
+	$("#main-sidebar").effect("shake");
 }); 
 
