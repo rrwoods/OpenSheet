@@ -28,11 +28,18 @@ OPENSHEET.layout = {
 		$("#" + this.currentTab + "-btn").removeClass("active");
 	},
 
+	loadTabHTML: function(path) {
+
+	},
+
 	openTab: function(tabName) {
 		this.hideCurrentTab();
-		$("#" + tabName + "-body").show();
 		$("#" + tabName + "-btn").addClass("active");
 		this.currentTab = tabName;
+
+		$("#" + tabName + "-body").load("src/"+ tabName.split("_").pop() +".html", function(data) {
+			$("#" + tabName + "-body").show();
+		});
 	},
 
 	createHandler: function(tabName) {
@@ -42,27 +49,25 @@ OPENSHEET.layout = {
 	},
 
 	createTabs: function(groupName, tabs, shouldCreateSummary) {
-		var i = 0;
-		var prefix = groupName + "_tab";
+		var prefix = groupName + "_Summary";
 
 		if(shouldCreateSummary) {
-			$("#main-sidebar").append('<div class="button" id="'+ prefix + i +'-btn">Summary</div>');
-			$("#main-body").append('<div class="tab-body" id="'+ prefix + i +'-body"><p>This is '+ groupName + '_Summary.</p></div>');
-			this.createHandler(prefix + i);
-			++i;
+			$("#main-sidebar").append('<div class="button" id="'+ prefix +'-btn">Summary</div>');
+			$("#main-body").append('<div class="tab-body" id="'+ prefix +'-body"><p>This is '+ groupName + '_Summary.</p></div>');
+			this.createHandler(prefix);
 		}
 
 		for (tab in tabs) {			
+			prefix = groupName + "_" + tab.replace(/\s/g, "-");
+
 			// Create buttons
-			$("#main-sidebar").append('<div class="button" id="'+ prefix + i +'-btn">' + tab +'</div>');
+			$("#main-sidebar").append('<div class="button" id="'+ prefix +'-btn">' + tab +'</div>');
 
 			// Create pages
-			$("#main-body").append('<div class="tab-body" id="'+ prefix + i +'-body"><p>This is '+ groupName + "_" + tab +'.</p></div>');
+			$("#main-body").append('<div class="tab-body" id="'+ prefix +'-body"><p>This is '+ groupName + "_" + tab +'.</p></div>');
 
 			// Create button handlers to tie buttons to pages
-			this.createHandler(prefix + i);
-
-			++i;
+			this.createHandler(prefix);
 		}
 	},
 
@@ -98,5 +103,7 @@ $(document).ready(function() {
 	OPENSHEET.file.loadFile(fileToLoad);
 
 	$("#main-sidebar").effect("shake");
+
+	OPENSHEET.layout.openTab("group0_Basics");
 }); 
 

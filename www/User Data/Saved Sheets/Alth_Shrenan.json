@@ -99,12 +99,11 @@
 					{"Notes": "rainbow six: planning stage", "XP": 0}
 				]
 			},
-			"Class" : {},
-			"Weapons / Armor" : {},
 			"Inventory":{},
 			"Maneuvers and Stances":{},
 			"Spells":{},
-			"Feats & Features":{},
+			"Feats and Features":{},
+			"Race and Class" : {},
 			"Other Effects":{}
 		}
 	}]
