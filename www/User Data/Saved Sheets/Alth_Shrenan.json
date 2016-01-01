@@ -110,10 +110,8 @@
 				]
 			},
 			"Inventory":{},
-			"Maneuvers and Stances":{},
-			"Spells":{},
-			"Feats and Features":{},
 			"Race and Class" : {},
+			"Feats and Features":{},
 			"Other Effects":{}
 		}
 	}]
