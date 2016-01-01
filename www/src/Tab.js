@@ -129,9 +129,9 @@ BasicsTab.prototype.populateTab = function() {
 	// Gender Race (Alignment)
 	$(bodyTab).append(
 		h3(
-			span(this.data.Alignment, qn+'_Alignment') + ' ' +
 			span(this.data.Gender,    qn+'_Gender') + ' ' +
-			span(this.data.Race,      qn+'_Race'),
+			span(this.data.Race,      qn+'_Race') + ' ' +
+			span('(' + this.data.Alignment + ')', qn+'_Alignment'),
 		qn+'_Subtitle')
 	);
 

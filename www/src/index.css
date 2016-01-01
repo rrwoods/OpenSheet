@@ -24,14 +24,11 @@ div {
 	padding: 0;
 }
 
-h1 {
-	font-family: "Helvetica", "Arial", sans-serif;
+h1.no-margin {
 	margin: 0;
-	padding: 0;
-	font-weight: normal;
 }
 
-p, h2, h3 {
+p, h1, h2, h3 {
 	font-family: "Helvetica", "Arial", sans-serif;
 	margin: 15px 0 0 0;
 	padding: 0;
@@ -125,7 +122,7 @@ div#main-sidebar .button:hover {
 div#main-body {
 	float: right;
 	width: 100%;
-	padding: 51px 0 0 278px;
+	padding: 36px 0 0 278px;
 }
 
 /* Tab content */
@@ -174,29 +171,33 @@ table.standard {
 }
 
 table.standard th {
-	background-color: #222;
+	background-color: #333;
 	color:#fff;
+	padding: 4px 10px;
 	font-weight: normal;
-	border: none;
+	border: 1px solid black;
 }
 
 table.standard td {
 	border: 1px solid black;
-	padding: 2px;
+	padding: 2px 6px;
 	text-align: center;
 	height: 25px;
 }
 
 .thin-cell {
-	width: 45px;
+	min-width: 45px;
+	max-width: 100px;
 }
 
 .medium-cell {
-	width: 90px;
+	min-width: 90px;
+	max-width: 360px;
 }
 
 .wide-cell {
-	width: 120px;
+	min-width: 120px;
+	max-width: 480px;
 }
 
 table.invisible {

@@ -1,0 +1,217 @@
+<h1 id="">Inventory</h1>
+<div class="table-container">
+	<table id="" class="standard">
+		<thead>
+			<tr>
+				<th class="thin-cell">Equip</th>
+				<th class="medium-cell">Type</th>
+				<th class="wide-cell">Item</th>
+				<th class="thin-cell">Qty</th>
+				<th class="medium-cell">Location</th>
+				<th class="wide-cell">Item Groups</th>
+				<th class="thin-cell">Total Value</th>
+				<th class="thin-cell">Total Weight</th>
+				<th class="spacer-small no-border no-background"></th>
+				<th class="no-border no-background"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="thin-cell"><input type="checkbox" checked></td>
+				<td class="medium-cell">Weapon</td>
+				<td class="wide-cell">Longsword</td>
+				<td class="thin-cell">1</td>
+				<td class="medium-cell">Hip</td>
+				<td class="wide-cell">Weapon, Equipment</td>
+				<td class="thin-cell">15 gp</td>
+				<td class="thin-cell">4 lb</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="no-border no-background"></td>
+			</tr>
+			<tr>
+				<td class="thin-cell"><input type="checkbox" checked></td>
+				<td class="medium-cell">Weapon</td>
+				<td class="wide-cell">Longbow</td>
+				<td class="thin-cell">1</td>
+				<td class="medium-cell">Back</td>
+				<td class="wide-cell">Weapon, Equipment</td>
+				<td class="thin-cell">75 gp</td>
+				<td class="thin-cell">3 lb</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="no-border no-background"></td>
+			</tr>
+			<tr>
+				<td class="thin-cell"><input type="checkbox" checked></td>
+				<td class="medium-cell">Armor</td>
+				<td class="wide-cell">Leather Armor</td>
+				<td class="thin-cell">1</td>
+				<td class="medium-cell">Body</td>
+				<td class="wide-cell">Armor, Equipment</td>
+				<td class="thin-cell">10 gp</td>
+				<td class="thin-cell">15 lb</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="no-border no-background"></td>
+			</tr>
+			<tr>
+				<td class="thin-cell"><input type="checkbox" checked></td>
+				<td class="medium-cell">Armor</td>
+				<td class="wide-cell">Buckler</td>
+				<td class="thin-cell">1</td>
+				<td class="medium-cell">Body</td>
+				<td class="wide-cell">Armor, Equipment</td>
+				<td class="thin-cell">10 gp</td>
+				<td class="thin-cell">5 lb</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="no-border no-background"></td>
+			</tr>
+			<tr>
+				<td class="thin-cell"><input type="checkbox" checked></td>
+				<td class="medium-cell">Item</td>
+				<td class="wide-cell">Thieves' Tools</td>
+				<td class="thin-cell">2</td>
+				<td class="medium-cell">Belt Pouch</td>
+				<td class="wide-cell">Belt</td>
+				<td class="thin-cell">60 gp</td>
+				<td class="thin-cell">2 lb</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="no-border no-background"></td>
+			</tr>
+			<tr>
+				<td class="thin-cell"><input type="checkbox" checked></td>
+				<td class="medium-cell">Item</td>
+				<td class="wide-cell">Fishing Hook</td>
+				<td class="thin-cell">1</td>
+				<td class="medium-cell">Backpack</td>
+				<td class="wide-cell">Backpack</td>
+				<td class="thin-cell">0.1 gp</td>
+				<td class="thin-cell">0 lb</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="add-button">+</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<h1 id="">Item Definitions</h1>
+<h2 id="">Weapons</h1>
+<div class="table-container">
+	<table id="" class="standard">
+		<thead>
+			<tr>
+				<th class="wide-cell">Name</th>
+				<th class="wide-cell">Properties</th>
+				<th class="thin-cell">Dmg Dice</th>
+				<th class="medium-cell">Type</th>
+				<th class="wide-cell">Enhancements</th>
+				<th class="thin-cell">Weight Ea.</th>
+				<th class="thin-cell">Value Ea.</th>
+				<th class="spacer-small no-border no-background"></th>
+				<th class="no-border no-background"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="wide-cell">Longsword</td>
+				<td class="wide-cell"><button>Setup</button></td>
+				<td class="thin-cell">1d8</td>
+				<td class="medium-cell">Slashing</td>
+				<td class="wide-cell">none <button>Edit</button></td>
+				<td class="thin-cell">4 lb</td>
+				<td class="thin-cell">45 gp</td>
+				<td class="spacer-small no-border"></td>
+				<td class="no-border"></td>
+			</tr>
+			<tr>
+				<td class="wide-cell">Longbow</td>
+				<td class="wide-cell"><button>Setup</button></td>
+				<td class="thin-cell">1d8</td>
+				<td class="medium-cell">Piercing</td>
+				<td class="wide-cell">+1, piercing, warning <button>Edit</button></td>
+				<td class="thin-cell">3 lb</td>
+				<td class="medium-cell"><button>Set</button></td>
+				<td class="spacer-small no-border"></td>
+				<td class="add-button no-border">+</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<h2 id="">Armor and Shields</h1>
+<div class="table-container">
+	<table id="" class="standard">
+		<thead>
+			<tr>
+				<th class="wide-cell">Name</th>
+				<th class="medium-cell">Type</th>
+				<th class="thin-cell">Armor</th>
+				<th class="thin-cell">Max DEX</th>
+				<th class="thin-cell">Armor Check Penalty</th>
+				<th class="thin-cell">Arcane Fail Chance</th>
+				<th class="thin-cell">Weight Ea.</th>
+				<th class="thin-cell">Value Ea.</th>
+				<th class="spacer-small no-border no-background"></th>
+				<th class="no-border no-background"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="wide-cell">Leather Armor</td>
+				<td class="medium-cell">Light</td>
+				<td class="thin-cell">+2</td>
+				<td class="thin-cell">+6</td>
+				<td class="thin-cell">0</td>
+				<td class="thin-cell">10%</td>
+				<td class="thin-cell">15 lb</td>
+				<td class="thin-cell">10 gp</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="no-border no-background"></td>
+			</tr>
+			<tr>
+				<td class="wide-cell">Buckler</td>
+				<td class="medium-cell">Shield</td>
+				<td class="thin-cell">+1</td>
+				<td class="thin-cell">-</td>
+				<td class="thin-cell">-1</td>
+				<td class="thin-cell">5%</td>
+				<td class="thin-cell">5 lb</td>
+				<td class="thin-cell"><button>Set</button></td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="add-button">+</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<h2 id="">Items</h1>
+<div class="table-container">
+	<table id="" class="standard">
+		<thead>
+			<tr>
+				<th class="wide-cell">Name</th>
+				<th class="medium-cell">Effects</th>
+				<th class="thin-cell">Weight Ea.</th>
+				<th class="thin-cell">Value Ea.</th>
+				<th class="spacer-small no-border no-background"></th>
+				<th class="no-border no-background"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="wide-cell">Thieves' Tools</td>
+				<td class="medium-cell">+2OL/DD <button>Edit</button></td>
+				<td class="thin-cell">1 lb</td>
+				<td class="thin-cell">30 gp</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="no-border no-background"></td>
+			</tr>
+			<tr>
+				<td class="wide-cell">Fishing Hook</td>
+				<td class="medium-cell">none <button>Edit</button></td>
+				<td class="thin-cell">0lb</td>
+				<td class="thin-cell">0.1 gp</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="add-button">+</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

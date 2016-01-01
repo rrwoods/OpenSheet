@@ -50,7 +50,7 @@
 					"Skills": 
 					{
 						"SM": 2,
-						"Stealth": 4,
+						"Ste": 4,
 						"Acr": 4,
 						"Con": 4,
 						"Perc": 4,
@@ -64,7 +64,7 @@
 					"Skills": 
 					{
 						"SM": 1,
-						"Stealth": 1,
+						"Ste": 1,
 						"Acr": 1,
 						"Con": 1,
 						"Perc": 1,
@@ -77,7 +77,7 @@
 					"Skills": 
 					{
 						"SM": 1,
-						"Stealth": 1,
+						"Ste": 1,
 						"Acr": 1,
 						"Con": 1,
 						"Perc": 1,
@@ -90,7 +90,7 @@
 					"Ability_Increment": "DEX",
 					"Skills": 
 					{
-						"Stealth": 1,
+						"Ste": 1,
 						"Acr": 1,
 						"Con": 1,
 						"Perc": 1,
