@@ -188,11 +188,11 @@ Table.prototype = {
 
 	canAddRows: function() {
 		this.rowButton = true;
-	}
+	},
 
 	canAddCols: function() {
 		this.colButton = true;
-	}
+	},
 
 	// if row or col is negative, this uses python-style indexing
 	getCell: function(sectionName, row, col) {

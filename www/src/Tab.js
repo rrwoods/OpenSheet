@@ -247,5 +247,5 @@ BasicsTab.prototype.populateTab = function() {
 
 	$(bodyTab).append(
 		div(classLevelsTable.getHTML(), '', 'table-container')
-	);	
+	);
 }
