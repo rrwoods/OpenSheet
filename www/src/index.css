@@ -210,4 +210,10 @@ table.invisible td {
 	padding-right: 5px;
 }
 
+textarea {
+	margin: 15px 0 0 0;
+}
 
+.black-border {
+	border: 1px solid black;
+}
