@@ -118,14 +118,16 @@ function Table(id = "", classString = "") {
 	this.classes = classString = "" ? [] : classString.split(" ");
 	this.contents = {};
 	this.width = 0;
+	this.rowButton = false;
+	this.colButton = false;
 }
 
 Table.prototype = {
 	constructor: Table,
 
 	addSection: function(type, rows = []) {
-		for(row in rows) {
-			if(this.width == null) {
+		for(row of rows) {
+			if(this.width == 0) {
 				this.width = row.length;
 			} else {
 				if (this.width != row.length) {
@@ -157,8 +159,8 @@ Table.prototype = {
 			this.width = cells.length;
 		}
 
-		if(index >= 0 && index <= contents[section].length) {
-			contents[section].splice(index, 0, cells);
+		if(index >= 0 && index <= this.contents[section].length) {
+			this.contents[section].splice(index, 0, cells);
 			return true;
 		}
 
@@ -181,7 +183,15 @@ Table.prototype = {
 		return false;
 	},
 
-	print: function() {
+	// if row or col is negative, this uses python-style indexing
+	changeCell: function(sectionName, row, col, newCell) {
+		var section = this.contents[sectionName];
+		if(row < 0) row += section.length;
+		if(col < 0) col += section[row].length;
+		section[row].splice(col, 1, newCell);
+	},
+
+	getHTML: function() {
 		toReturn = "<table" + ifID(this.id) + ifClasses(this.classes) + ">\n";
 
 		for(section in this.contents) {
@@ -196,6 +206,7 @@ Table.prototype = {
 			toReturn += '</'+section+'>';	
 		}
 
+		toReturn += '</table>';
 		return toReturn;
 	}
 }

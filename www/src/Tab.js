@@ -135,9 +135,47 @@ BasicsTab.prototype.populateTab = function() {
 		qn+'_Subtitle')
 	);
 
+	var formsTable = new Table(qn+"_Forms", "standard");
+	var formsTableHeader = [
+		th('', 'wide-cell'),
+		th('STR', 'thin-cell'),
+		th('DEX', 'thin-cell'),
+		th('CON', 'thin-cell'),
+		th('INT', 'thin-cell'),
+		th('WIS', 'thin-cell'),
+		th('CHA', 'thin-cell'),
+		th('Speed', 'medium-cell'),
+		th('Size', 'medium-cell'),
+		th('Weight', 'medium-cell'),
+		th('Nat. Armor', 'medium-cell'),
+		th('', 'spacer-small no-border no-background'),
+		th('', 'no-border no-background'), // +button
+	];
+	formsTable.addSection("thead", [formsTableHeader]);
+
+	formsTable.addSection("tbody");
+	$.each(this.data.Forms, function(index, theForm) {
+		formsTable.addRow("tbody", index, [
+			th(theForm.Name, 'wide-cell'),
+			td(theForm.STR, 'thin-cell'),
+			td(theForm.DEX, 'thin-cell'),
+			td(theForm.CON, 'thin-cell'),
+			td(theForm.INT, 'thin-cell'),
+			td(theForm.WIS, 'thin-cell'),
+			td(theForm.CHA, 'thin-cell'),
+			td(theForm.Speed, 'medium-cell'),
+			td(theForm.Size, 'medium-cell'),
+			td(theForm.Weight, 'medium-cell'),
+			td(theForm.NA, 'medium-cell'),
+			td('', 'spacer-small no-border'),
+			td('', 'no-border'),
+		])
+	})
+	formsTable.changeCell("tbody", -1, -1, td('+', 'add-button no-border'));
+
 	$(bodyTab).append(
-		div(p("forms table here"))
-	);	
+		div(formsTable.getHTML(), '', 'table-container')
+	);
 
 	// Languages
 	$(bodyTab).append(
@@ -153,7 +191,56 @@ BasicsTab.prototype.populateTab = function() {
 		'', '', 'invisible')
 	);
 
+	// build the class levels table -- but first, we need to see
+	// what skill headers are needed, so go over all the class levels
+	// and figure that out.
+	var skillNames = [];
+	for(level of this.data.Class_Levels)
+		for(skillName in level.Skills)
+			if($.inArray(skillName, skillNames) == -1)
+				skillNames.push(skillName);
+	var skillHeaders = $.map(skillNames, function(skillName, i) {
+		return th(skillName, 'thin-cell');
+	})
+
+	var classLevelsTable = new Table(qn+"_Levels", "standard");
+	var classLevelsTableHeader = [
+		th('Classes', 'wide-cell'),
+		th('Lvl', 'thin-cell'),
+		th('HP rolls', 'medium-cell'),
+		th('+Abl', 'thin-cell'),
+	];
+	$.merge(classLevelsTableHeader, skillHeaders);
+	classLevelsTableHeader.push(th('', 'spacer-small no-border no-background'));
+	classLevelsTableHeader.push(th('+', 'add-button no-border'));
+	classLevelsTable.addSection("thead", [classLevelsTableHeader]);
+
+	classLevelsTracker = {}
+	classLevelsTable.addSection("tbody");
+	$.each(this.data.Class_Levels, function(index, theLevel) {
+		var lvl = 1;
+		if(theLevel.Class in classLevelsTracker) {
+			classLevelsTracker[theLevel.Class]++;
+			lvl = classLevelsTracker[theLevel.Class];
+		} else {
+			classLevelsTracker[theLevel.Class] = 1;
+		}
+		var newRow = [
+			td(theLevel.Class),
+			td(lvl),
+			td(theLevel.HP),
+			td("Ability_Increment" in theLevel ? theLevel.Ability_Increment : ""),
+		]
+		$.merge(newRow, $.map(skillNames, function(skillName, i) {
+			return td(skillName in theLevel.Skills ? theLevel.Skills[skillName] : "");
+		}));
+		newRow.push(td('', 'spacer-small no-border'));
+		newRow.push(td('', 'no-border'));
+		classLevelsTable.addRow("tbody", index, newRow)
+	})
+	classLevelsTable.changeCell("tbody", -1, -1, td('+', 'add-button no-border'));
+
 	$(bodyTab).append(
-		div(p("class levels table here"))
+		div(classLevelsTable.getHTML(), '', 'table-container')
 	);	
 }

@@ -43,57 +43,58 @@
 				}],
 				"Auto_Lang": ["Common", "Gnome"],
 				"Bonus_Lang": ["Terran"],
-				"Class Levels": 
+				"Class_Levels": 
 				[{
-					"Name": "Swordsage",
-					"HP roll": 8,
-					"Skill points": 
+					"Class": "Swordsage",
+					"HP": 8,
+					"Skills": 
 					{
-						"Sense Motive": 2,
+						"SM": 2,
 						"Stealth": 4,
-						"Acrobatics": 4,
-						"Concentration": 4,
-						"Perception": 4,
-						"Knowledge (history)": 4,
-						"Speak Language": 2
+						"Acr": 4,
+						"Con": 4,
+						"Perc": 4,
+						"K-his": 4,
+						"SL": 2
 					}
 				},
 				{
-					"Name": "Swordsage",
-					"HP roll": 5,
-					"Skill points": 
+					"Class": "Swordsage",
+					"HP": 5,
+					"Skills": 
 					{
-						"Sense Motive": 1,
+						"SM": 1,
 						"Stealth": 1,
-						"Acrobatics": 1,
-						"Concentration": 1,
-						"Perception": 1,
-						"Knowledge (history)": 1
+						"Acr": 1,
+						"Con": 1,
+						"Perc": 1,
+						"K-his": 1
 					}
 				},
 				{
-					"Name": "Swordsage",
-					"HP roll": 8,
-					"Skill points": 
+					"Class": "Swordsage",
+					"HP": 8,
+					"Skills": 
 					{
-						"Sense Motive": 1,
+						"SM": 1,
 						"Stealth": 1,
-						"Acrobatics": 1,
-						"Concentration": 1,
-						"Perception": 1,
-						"Skill trick": 2
+						"Acr": 1,
+						"Con": 1,
+						"Perc": 1,
+						"trick": 2
 					}
 				},
 				{
-					"Name": "Swordsage",
-					"HP roll": 5,
-					"Skill points": 
+					"Class": "Swordsage",
+					"HP": 5,
+					"Ability_Increment": "DEX",
+					"Skills": 
 					{
 						"Stealth": 1,
-						"Acrobatics": 1,
-						"Concentration": 1,
-						"Perception": 1,
-						"Knowledge (history)": 2
+						"Acr": 1,
+						"Con": 1,
+						"Perc": 1,
+						"K-his": 2
 					}
 				}],
 				"Level adjust": 0,
