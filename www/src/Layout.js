@@ -85,15 +85,15 @@ p = function(text, id = "", classString = "") {
 	return '<p'+ifID(id)+' class="'+classString+'">'+text+'</p>\n';	
 }
 
-td = function(text, classString = "", attrString = "") {
+td = function(text, id = "", classString = "", attrString = "") {
 	return '<td '+attrString+' class="'+classString+'">'+text+'</td>\n';
 }
 
-th = function(text, classString = "") {
-	return '<th class="'+classString+'">'+text+'</th>\n';
+th = function(text, id = "", classString = "", attrString = "") {
+	return '<th '+attrString+' class="'+classString+'">'+text+'</th>\n';
 }
 
-tr = function(cells, classString = "") {
+tr = function(cells, id = "", classString = "") {
 	return '<tr class="'+classString+'">'+cells+'</tr>\n';
 }
 
@@ -127,10 +127,13 @@ Table.prototype = {
 
 	addSection: function(type, rows = []) {
 		for(row of rows) {
+			var rowLength = sumArray($.map(row, function(cell, i) {
+				return cell.colspan;
+			}))
 			if(this.width == 0) {
-				this.width = row.length;
+				this.width = rowLength;
 			} else {
-				if (this.width != row.length) {
+				if (this.width != rowLength) {
 					console.log("Error, you're trying to add a non-rectangular array");
 					return false;
 				}
@@ -183,30 +186,88 @@ Table.prototype = {
 		return false;
 	},
 
+	canAddRows: function() {
+		this.rowButton = true;
+	}
+
+	canAddCols: function() {
+		this.colButton = true;
+	}
+
 	// if row or col is negative, this uses python-style indexing
-	changeCell: function(sectionName, row, col, newCell) {
+	getCell: function(sectionName, row, col) {
 		var section = this.contents[sectionName];
 		if(row < 0) row += section.length;
 		if(col < 0) col += section[row].length;
-		section[row].splice(col, 1, newCell);
+		return section[row][col];
 	},
 
 	getHTML: function() {
 		toReturn = "<table" + ifID(this.id) + ifClasses(this.classes) + ">\n";
 
-		for(section in this.contents) {
-			toReturn += '<'+section+'>';
-			for(row of this.contents[section]) {
-				toReturn += '<tr>';
-				for(cell of row) {
-					toReturn += cell;
+		for(section of ['thead', 'tbody', 'tfoot']) {
+			if(section in this.contents) {
+				toReturn += '<'+section+'>';
+				for(row of this.contents[section]) {
+					toReturn += '<tr>';
+					for(cell of row) {
+						toReturn += cell.getHTML();
+					}
+					toReturn += '</tr>';
 				}
-				toReturn += '</tr>';
+				toReturn += '</'+section+'>';
 			}
-			toReturn += '</'+section+'>';	
 		}
 
 		toReturn += '</table>';
 		return toReturn;
+	}
+}
+
+function TableCell(text = '') {
+	this.text = text;
+	this.id = '';
+	this.classes = [];
+	this.isTh = false;
+	this.colSpan = 1;
+}
+
+TableCell.prototype = {
+	constructor: TableCell,
+
+	setText: function(newText) {
+		this.text = newText;
+		return this;
+	},
+
+	setID: function(newID) {
+		this.ID = newID;
+		return this;
+	},
+
+	setClasses: function(classString) {
+		this.classes = (classString == '' ? [] : classString.split(' '));
+		return this;
+	},
+
+	addClass: function(newClass) {
+		this.classes.push(newClass);
+		return this;
+	},
+
+	setTh: function(isTh = true) {
+		this.isTh = isTh;
+		return this;
+	},
+
+	setColspan: function(newColspan) {
+		this.colspan = newColspan;
+		return this;
+	},
+
+	getHTML: function() {
+		tag = this.isTh ? th : td;
+		attrString = (this.colspan == 1 ? '' : 'colspan="' + this.colspan + '"');
+		return tag(this.text, this.id, this.classes.join(' '), this.attrString);
 	}
 }

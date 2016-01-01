@@ -15,6 +15,11 @@ OPENSHEET.file = {
 	}
 }
 
+sumArray = function(array)
+{
+	return array.reduce(function(pv, cv) { return pv + cv; }, 0)
+}
+
 /* Ready, set, go! */
 
 $(document).ready(function() {
@@ -35,4 +40,3 @@ $(document).ready(function() {
 
 	//OPENSHEET.layout.openTab("group0_Basics");
 }); 
-

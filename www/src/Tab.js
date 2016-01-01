@@ -137,41 +137,41 @@ BasicsTab.prototype.populateTab = function() {
 
 	var formsTable = new Table(qn+"_Forms", "standard");
 	var formsTableHeader = [
-		th('', 'wide-cell'),
-		th('STR', 'thin-cell'),
-		th('DEX', 'thin-cell'),
-		th('CON', 'thin-cell'),
-		th('INT', 'thin-cell'),
-		th('WIS', 'thin-cell'),
-		th('CHA', 'thin-cell'),
-		th('Speed', 'medium-cell'),
-		th('Size', 'medium-cell'),
-		th('Weight', 'medium-cell'),
-		th('Nat. Armor', 'medium-cell'),
-		th('', 'spacer-small no-border no-background'),
-		th('', 'no-border no-background'), // +button
+		new TableCell('').setClasses('wide-cell no-border no-background').setTh(),
+		new TableCell('STR').setClasses('thin-cell').setTh(),
+		new TableCell('DEX').setClasses('thin-cell').setTh(),
+		new TableCell('CON').setClasses('thin-cell').setTh(),
+		new TableCell('INT').setClasses('thin-cell').setTh(),
+		new TableCell('WIS').setClasses('thin-cell').setTh(),
+		new TableCell('CHA').setClasses('thin-cell').setTh(),
+		new TableCell('Speed').setClasses('medium-cell').setTh(),
+		new TableCell('Size').setClasses('medium-cell').setTh(),
+		new TableCell('Weight').setClasses('medium-cell').setTh(),
+		new TableCell('Nat. Armor').setClasses('medium-cell').setTh(),
+		new TableCell('').setClasses('spacer-small no-border no-background').setTh(),
+		new TableCell('').setClasses('no-border no-background').setTh(),
 	];
 	formsTable.addSection("thead", [formsTableHeader]);
 
 	formsTable.addSection("tbody");
 	$.each(this.data.Forms, function(index, theForm) {
 		formsTable.addRow("tbody", index, [
-			th(theForm.Name, 'wide-cell'),
-			td(theForm.STR, 'thin-cell'),
-			td(theForm.DEX, 'thin-cell'),
-			td(theForm.CON, 'thin-cell'),
-			td(theForm.INT, 'thin-cell'),
-			td(theForm.WIS, 'thin-cell'),
-			td(theForm.CHA, 'thin-cell'),
-			td(theForm.Speed, 'medium-cell'),
-			td(theForm.Size, 'medium-cell'),
-			td(theForm.Weight, 'medium-cell'),
-			td(theForm.NA, 'medium-cell'),
-			td('', 'spacer-small no-border'),
-			td('', 'no-border'),
+			new TableCell(theForm.Name).setClasses('wide-cell').setTh(),
+			new TableCell(theForm.STR).setClasses('thin-cell'),
+			new TableCell(theForm.DEX).setClasses('thin-cell'),
+			new TableCell(theForm.CON).setClasses('thin-cell'),
+			new TableCell(theForm.INT).setClasses('thin-cell'),
+			new TableCell(theForm.WIS).setClasses('thin-cell'),
+			new TableCell(theForm.CHA).setClasses('thin-cell'),
+			new TableCell(theForm.Speed).setClasses('medium-cell'),
+			new TableCell(theForm.Size).setClasses('medium-cell'),
+			new TableCell(theForm.Weight).setClasses('medium-cell'),
+			new TableCell(theForm.NA).setClasses('medium-cell'),
+			new TableCell('').setClasses('spacer-small no-border'),
+			new TableCell('').setClasses('no-border'),
 		])
 	})
-	formsTable.changeCell("tbody", -1, -1, td('+', 'add-button no-border'));
+	formsTable.getCell("tbody", -1, -1).setClasses('add-button').setText('+');
 
 	$(bodyTab).append(
 		div(formsTable.getHTML(), '', 'table-container')
@@ -200,19 +200,19 @@ BasicsTab.prototype.populateTab = function() {
 			if($.inArray(skillName, skillNames) == -1)
 				skillNames.push(skillName);
 	var skillHeaders = $.map(skillNames, function(skillName, i) {
-		return th(skillName, 'thin-cell');
+		return new TableCell(skillName).setClasses('thin-cell').setTh();
 	})
 
 	var classLevelsTable = new Table(qn+"_Levels", "standard");
 	var classLevelsTableHeader = [
-		th('Classes', 'wide-cell'),
-		th('Lvl', 'thin-cell'),
-		th('HP rolls', 'medium-cell'),
-		th('+Abl', 'thin-cell'),
+		new TableCell('Classes').setClasses('wide-cell').setTh(),
+		new TableCell('Lvl').setClasses('thin-cell').setTh(),
+		new TableCell('HP rolls').setClasses('medium-cell').setTh(),
+		new TableCell('+Abl').setClasses('thin-cell').setTh(),
 	];
 	$.merge(classLevelsTableHeader, skillHeaders);
-	classLevelsTableHeader.push(th('', 'spacer-small no-border no-background'));
-	classLevelsTableHeader.push(th('+', 'add-button no-border'));
+	classLevelsTableHeader.push(new TableCell('').setClasses('spacer-small no-border no-background').setTh());
+	classLevelsTableHeader.push(new TableCell('+').setClasses('add-button no-border').setTh());
 	classLevelsTable.addSection("thead", [classLevelsTableHeader]);
 
 	classLevelsTracker = {}
@@ -226,19 +226,24 @@ BasicsTab.prototype.populateTab = function() {
 			classLevelsTracker[theLevel.Class] = 1;
 		}
 		var newRow = [
-			td(theLevel.Class),
-			td(lvl),
-			td(theLevel.HP),
-			td("Ability_Increment" in theLevel ? theLevel.Ability_Increment : ""),
+			new TableCell(theLevel.Class),
+			new TableCell(lvl),
+			new TableCell(theLevel.HP),
+			new TableCell("Ability_Increment" in theLevel ? theLevel.Ability_Increment : ""),
 		]
 		$.merge(newRow, $.map(skillNames, function(skillName, i) {
-			return td(skillName in theLevel.Skills ? theLevel.Skills[skillName] : "");
+			return new TableCell(skillName in theLevel.Skills ? theLevel.Skills[skillName] : "");
 		}));
-		newRow.push(td('', 'spacer-small no-border'));
-		newRow.push(td('', 'no-border'));
+		newRow.push(new TableCell('').setClasses('spacer-small no-border'));
+		newRow.push(new TableCell('').setClasses('no-border'));
 		classLevelsTable.addRow("tbody", index, newRow)
 	})
-	classLevelsTable.changeCell("tbody", -1, -1, td('+', 'add-button no-border'));
+	classLevelsTable.getCell("tbody", -1, -1).setClasses('add-button').setText('+');
+
+	// var totalsFooter = [
+	// 	new TableCell("Character Level");
+	// ]
+	// classLevelsTable.addSection("tfoot", [totalsFooter]);
 
 	$(bodyTab).append(
 		div(classLevelsTable.getHTML(), '', 'table-container')
