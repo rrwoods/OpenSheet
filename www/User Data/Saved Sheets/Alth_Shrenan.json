@@ -363,7 +363,7 @@
 									"Masterwork"
 								]
 							}
-						}],
+						}]
 					},
 					{
 						"Name": "Longsword",
@@ -414,7 +414,7 @@
 						"Name": "Backpack",
 						"Effects": [],
 						"Weight": 2,
-						"Value": 2,
+						"Value": 2
 					},
 					{
 						"Name": "Thieves' Tools",
@@ -423,43 +423,43 @@
 							"+2OL/DD"
 						],
 						"Weight": 1,
-						"Value": 30,
+						"Value": 30
 					},
 					{
 						"Name": "Trail Rations",
 						"Effects": [],
 						"Weight": 1,
-						"Value": 0.5,
+						"Value": 0.5
 					},
 					{
 						"Name": "Bag of Holding",
 						"Effects": [],
 						"Weight": 15,
-						"Value": 2500,
+						"Value": 2500
 					},
 					{
 						"Name": "Bedroll",
 						"Effects": [],
 						"Weight": 5,
-						"Cost": 0.1,
+						"Cost": 0.1
 					},
 					{
 						"Name": "Tent",
 						"Effects": [],
 						"Weight": 20,
-						"Cost": 10,
+						"Cost": 10
 					},
 					{
 						"Name": "10-foot Ladder",
 						"Effects": [],
 						"Weight": 20,
-						"Cost": 10,
+						"Cost": 10
 					},
 					{
 						"Name": "Portable Ram",
 						"Effects": [],
 						"Weight": 20,
-						"Cost": 10,
+						"Cost": 10
 					}]
 				}
 			},
