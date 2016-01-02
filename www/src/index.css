@@ -138,6 +138,14 @@ table {
 	font-family: "Helvetica", "Arial", sans-serif;
 }
 
+table.standard td.remove-row {
+	background-color: #500;
+	color: white;
+	text-align: center;
+	width:23px;
+	padding: 0;
+}
+
 table.standard td.add-button {
 	background-color: #43431F;
 	color: white;
@@ -162,6 +170,10 @@ table.standard th.add-button {
 
 .spacer-small {
 	width:3px;
+}
+
+.spacer-medium {
+	width:10px;
 }
 
 table.standard {
@@ -200,6 +212,10 @@ table.standard td {
 	max-width: 480px;
 }
 
+.ultra-wide-cell {
+	width: 600px;
+}
+
 table.invisible {
 	border-collapse: collapse;
 	margin: 15px 0 0 0;
@@ -216,4 +232,28 @@ textarea {
 
 .black-border {
 	border: 1px solid black;
+}
+
+.no-right-border {
+	border-right: none !important;
+}
+
+.no-left-border {
+	border-left: none !important;
+}
+
+.no-top-border {
+	border-top: none !important;
+}
+
+.no-bottom-border {
+	border-bottom: none !important;
+}
+
+.left-align {
+	text-align: left !important;
+}
+
+div.spacer50 {
+	height: 50px;
 }
