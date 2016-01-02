@@ -7,6 +7,7 @@ var OPENSHEET = OPENSHEET || {};
 OPENSHEET.layout = {
 	currentTab: "",
 	lastTab: "",
+	loadedGroups: 0,
 
 	hideCurrentTab: function() {
 		this.lastTab = this.currentTab;
@@ -15,13 +16,14 @@ OPENSHEET.layout = {
 	},
 
 	parseFile: function() {
-		var i = 0;
 		for (sheetPath in OPENSHEET.file.loadedFiles) {
-			groupName = "group"+i;
-			OPENSHEET.file.data.groups[groupName] = new Group(groupName, sheetPath)
-			OPENSHEET.file.data.groups[groupName].addTabs(OPENSHEET.file.loadedFiles[sheetPath].groups[i].tabs)
-			OPENSHEET.file.data.groups[groupName].collapsible = !OPENSHEET.file.loadedFiles[sheetPath].name;
-			++i;
+			for (group of OPENSHEET.file.loadedFiles[sheetPath].groups) {
+				groupName = "group"+this.loadedGroups;
+				OPENSHEET.file.data.groups[groupName] = new Group(groupName, group.name, sheetPath)
+				OPENSHEET.file.data.groups[groupName].collapsible = group.name ? true : false;
+				OPENSHEET.file.data.groups[groupName].addTabs(group.tabs)
+				++this.loadedGroups;
+			}
 		}
 
 		this.generateLayout();
@@ -57,10 +59,16 @@ makeHeader = function(level, text, id, classString = "") {
 	return '<h'+level+ifID(id)+' class="'+classString+'">'+text+'</h'+level+'>\n';
 }
 
+linkCollapsible = function(activatorId, containerId, style = "blind") {
+	$("#" + activatorId).click(function() {
+		$('#' + containerId).toggle(style);
+	});
+}
+
 h1 = function(text, id = "", classString = "") {
 	return makeHeader(1, text, id, classString)
-}
-	
+} 
+
 h2 = function(text, id = "", classString = "") {
 	return makeHeader(2, text, id, classString)
 }

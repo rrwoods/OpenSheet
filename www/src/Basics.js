@@ -27,9 +27,9 @@ BasicsTab.prototype.populateTab = function() {
 	 * Forms
 	*/
 	{
-		$(bodyTab).append(h3('Forms', '', 'section-head'));
-
+		$(bodyTab).append(h3('Forms', 'Forms-header', 'section-head collapser'));
 		$(bodyTab).append('<hr class="light"/>');
+		$(bodyTab).append(div('', 'Forms_collapse-contents', 'collapsible'));
 
 		var formsTable = new Table(qn+"_Forms", "standard");
 		var formsTableHeader = [
@@ -66,33 +66,41 @@ BasicsTab.prototype.populateTab = function() {
 
 		formsTable.canAddRows();
 		
-		$(bodyTab).append(
+		$("#Forms_collapse-contents").append(
 			div(formsTable.getHTML(), '', 'table-container')
 		);
+
+		linkCollapsible('Forms-header', 'Forms_collapse-contents');
 	}
 
 	// Languages
-	$(bodyTab).append(
-		h3('Languages', '', 'section-head') + '<hr class="light"/>' +
-		table('',
-			tr(
-				td("Automatic Languages: ") +
-				td(this.data.Auto_Lang.join(", ")) 
-			) +
-			tr(
-				td("Bonus Languages: ") +
-				td(this.data.Bonus_Lang.join(", "))
-			),
-		'', '', 'invisible')
-	);
+	{
+		$(bodyTab).append(
+			h3('Languages', 'Languages-header', 'section-head collapser') + '<hr class="light"/>' +
+			div(
+				table('',
+					tr(
+						td("Automatic Languages: ") +
+						td(this.data.Auto_Lang.join(", ")) 
+					) +
+					tr(
+						td("Bonus Languages: ") +
+						td(this.data.Bonus_Lang.join(", "))
+					),
+				'', '', 'invisible'),
+			'Languages_collapse-contents', 'collapsible')
+		);
+
+		linkCollapsible('Languages-header', 'Languages_collapse-contents');
+	}
 
 	/**
 	 * Class levels
 	**/
 	{
-		$(bodyTab).append(h3('Levels', '', 'section-head'));
-
+		$(bodyTab).append(h3('Levels', 'Levels-header', 'section-head collapser'));
 		$(bodyTab).append('<hr class="light"/>');
+		$(bodyTab).append(div('', 'Levels_collapse-contents', 'collapsible'));
 
 		var classLevelsTable = new Table(qn+"_Levels", "standard");
 
@@ -126,21 +134,21 @@ BasicsTab.prototype.populateTab = function() {
 			classLevelsTable.addRow("tbody", index, newRow);
 		});
 
-		$(bodyTab).append(
+		$('#Levels_collapse-contents').append(
 			div(classLevelsTable.getHTML(), '', 'table-container')
 		);
-	}
 
-	// $(bodyTab).append('<br /><hr class="light"/>');
+		linkCollapsible('Levels-header', 'Levels_collapse-contents');
+	}
 
 	/**
 	 * Skills
 	**/
 	{
 
-		$(bodyTab).append(h3('Skills', '', 'section-head'));
-
+		$(bodyTab).append(h3('Skills', 'Skills-header', 'section-head collapser'));
 		$(bodyTab).append('<hr class="light"/>');
+		$(bodyTab).append(div('', 'Skills_collapse-contents', 'collapsible'));
 
 		var skillLevelsTable = new Table(qn+"_Skills", "standard");
 		var skillLevelsTableHeader = [[new TableCell('Level').setClasses('wide-cell')]];
@@ -183,15 +191,16 @@ BasicsTab.prototype.populateTab = function() {
 		}));
 
 		$.each(skillTotalsTracker, function(skillName, points) {
-			console.log(skillName + ", " + points);
 			totalsCol[skillLevelsTracker[skillName]+1].setText(points);
 		});
 
 		skillLevelsTable.addCol(1, totalsCol);
 
-		$(bodyTab).append(
+		$('#Skills_collapse-contents').append(
 			div(skillLevelsTable.getHTML(), '', 'table-container')
 		);
+
+		linkCollapsible('Skills-header', 'Skills_collapse-contents');
 	}
 
 	$(bodyTab).append('<br /><br />');

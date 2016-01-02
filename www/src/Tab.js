@@ -19,7 +19,7 @@ Tab.prototype = {
 		this.data = args[2];
     },
 
-    openTab: function() {
+    clickTab: function() {
 		OPENSHEET.layout.hideCurrentTab();
 		var qualifiedName = this.getQualifiedName();
 
@@ -47,32 +47,58 @@ Tab.prototype = {
 		$("#" + this.getQualifiedName() + "-body").append("<br>" + this.name + " populated!");
 	},
 
-	layoutSelf: function() {
-		var qualifiedName = this.getQualifiedName();
+	layoutSelf: function(sidebarContainer, bodyContainer) {
+		var qn = this.getQualifiedName();
+		var indent = this.owner.collapsible && this.owner.collapseHandle != this;
 
 		// Create buttons
-		$("#main-sidebar").append('<div class="button" id="'+ qualifiedName +'-btn">' + this.displayName +'</div>');
+		$(sidebarContainer).append(
+			div(this.displayName, qn+'-btn', 'button' + (indent ? ' indent' : ''))
+		);
 
 		// Create pages
-		$("#main-body").append('<div class="tab-body" id="'+ qualifiedName +'-body"><p>This is '+ qualifiedName +'.</p></div>');
+		$(bodyContainer).append(
+			div(p('This is '+qn), qn+'-body', 'tab-body')
+		);
 
 		// Create button handlers to tie buttons to pages
-		this.createHandler(qualifiedName);
+		this.createHandler(qn);
 	},
 
 	createHandler: function() {
 		$("#" + this.getQualifiedName() + "-btn").click(this, function(event) {
-			event.data.openTab(event.data.name);
+			event.data.clickTab(event.data.name);
 		});
 	},
 }
 
-function Group(name, fromFile) {
+CollapseTab.prototype = new Tab(); 
+CollapseTab.prototype.constructor = CollapseTab; 
+
+function CollapseTab(args) {
+	this.initialize(args);
+}
+
+CollapseTab.prototype.clickTab = function() {
+	$("#"+this.name+'_collapse-contents').toggle("blind");
+}
+
+CollapseTab.prototype.initialize = function(args) {
+	this.owner = args[0];
+	this.displayName = args[1];
+	this.name = this.owner.name;
+	this.visible = true;
+	this.data = args[2];
+}
+
+function Group(name, displayName, fromFile) {
 	this.name = name;
+	this.displayName = displayName;
 	this.fromFile = fromFile;
 	this.tabs = {};
 	this.collapsible = false;
 	this.collapsed = false;
+	this.collapseHandle = {};
 }
 
 Group.prototype = {
@@ -81,10 +107,10 @@ Group.prototype = {
 	addTabs: function(tabData) {
 		var tabName, prefix;
 
-		if(!this.collapsible) {
-			tabName = "Summary";
-			prefix = this.name + "_" + tabName;
-			this.tabs[prefix] = MakeTab("Summary", [this, tabName, {}]);
+		if(this.collapsible) {
+			tabName = this.displayName;
+			prefix = this.name + "_Handle";
+			this.collapseHandle = MakeTab("Collapse", [this, tabName, {}]);
 		}
 
 		for (tabName in tabData) {		
@@ -94,8 +120,20 @@ Group.prototype = {
 	},
 
 	layoutSelf: function() {
+		var sidebarContainer = "#main-sidebar";
+		var bodyContainer = "#main-body";
+
+		if(this.collapsible) {
+			this.collapseHandle.layoutSelf(sidebarContainer, bodyContainer);
+
+			$("#main-sidebar").append(
+				div('', this.name+'_collapse-contents', 'display-none collapsible')
+			);
+			sidebarContainer = '#'+this.name+'_collapse-contents';
+		}
+
 		for (tab in this.tabs) {	
-			this.tabs[tab].layoutSelf();
+			this.tabs[tab].layoutSelf(sidebarContainer, bodyContainer);
 		}
 	},
 }
@@ -108,6 +146,8 @@ function MakeTab(type, args) {
 	{
 		case "Basics":
 			return new BasicsTab(args);
+		case "Collapse":
+			return new CollapseTab(args);
 		default:
 			return new Tab(args);
 	}
