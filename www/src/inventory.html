@@ -3,11 +3,11 @@
 	<table id="" class="standard">
 		<thead>
 			<tr>
-				<th class="thin-cell">Equip</th>
+				<td class="no-border no-background">Locations <button>+</button></td>
 				<th class="medium-cell">Type</th>
 				<th class="wide-cell">Item</th>
 				<th class="thin-cell">Qty</th>
-				<th class="medium-cell">Location</th>
+				<th class="medium-cell">Slot</th>
 				<th class="wide-cell">Item Groups</th>
 				<th class="thin-cell">Total Value</th>
 				<th class="thin-cell">Total Weight</th>
@@ -17,31 +17,38 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td class="thin-cell"><input type="checkbox" checked></td>
+				<th class="wide-cell no-right-border">Equipped</th>
+				<th class="wide-cell no-left-border no-right-border">Effects <input type="checkbox" /></th>
+				<th class="no-left-border no-right-border left-align" colspan="4"> Weight Multiplier: 1.0 </th>
+				<th class="thin-cell">110 gp</th>
+				<th class="thin-cell">27 lb</th>
+			</tr>
+			<tr>
+				<td class="no-border no-background"></td>
 				<td class="medium-cell">Weapon</td>
 				<td class="wide-cell">Longsword</td>
 				<td class="thin-cell">1</td>
-				<td class="medium-cell">Hip</td>
+				<td class="medium-cell"></td>
 				<td class="wide-cell">Weapon, Equipment</td>
 				<td class="thin-cell">15 gp</td>
 				<td class="thin-cell">4 lb</td>
-				<td class="spacer-small no-border no-background"></td>
+				<td class="spacer-small remove-row">x</td>
 				<td class="no-border no-background"></td>
 			</tr>
 			<tr>
-				<td class="thin-cell"><input type="checkbox" checked></td>
+				<td class="no-border no-background"></td>
 				<td class="medium-cell">Weapon</td>
 				<td class="wide-cell">Longbow</td>
 				<td class="thin-cell">1</td>
 				<td class="medium-cell">Back</td>
-				<td class="wide-cell">Weapon, Equipment</td>
+				<td class="wide-cell"></td>
 				<td class="thin-cell">75 gp</td>
 				<td class="thin-cell">3 lb</td>
 				<td class="spacer-small no-border no-background"></td>
 				<td class="no-border no-background"></td>
 			</tr>
 			<tr>
-				<td class="thin-cell"><input type="checkbox" checked></td>
+				<td class="no-border no-background"></td>
 				<td class="medium-cell">Armor</td>
 				<td class="wide-cell">Leather Armor</td>
 				<td class="thin-cell">1</td>
@@ -53,11 +60,11 @@
 				<td class="no-border no-background"></td>
 			</tr>
 			<tr>
-				<td class="thin-cell"><input type="checkbox" checked></td>
+				<td class="no-border no-background"></td>
 				<td class="medium-cell">Armor</td>
 				<td class="wide-cell">Buckler</td>
 				<td class="thin-cell">1</td>
-				<td class="medium-cell">Body</td>
+				<td class="medium-cell"></td>
 				<td class="wide-cell">Armor, Equipment</td>
 				<td class="thin-cell">10 gp</td>
 				<td class="thin-cell">5 lb</td>
@@ -65,7 +72,14 @@
 				<td class="no-border no-background"></td>
 			</tr>
 			<tr>
-				<td class="thin-cell"><input type="checkbox" checked></td>
+				<th class="wide-cell no-right-border">Backpack</th>
+				<th class="wide-cell no-left-border no-right-border">Effects <input type="checkbox" /></th>
+				<th class="no-left-border no-right-border left-align" colspan="4"> Weight Multiplier: 1.0 </th>
+				<th class="thin-cell">60.1 gp</th>
+				<th class="thin-cell">2 lb</th>
+			</tr>
+			<tr>
+				<td class="no-border no-background"></td>
 				<td class="medium-cell">Item</td>
 				<td class="wide-cell">Thieves' Tools</td>
 				<td class="thin-cell">2</td>
@@ -77,7 +91,7 @@
 				<td class="no-border no-background"></td>
 			</tr>
 			<tr>
-				<td class="thin-cell"><input type="checkbox" checked></td>
+				<td class="no-border no-background"></td>
 				<td class="medium-cell">Item</td>
 				<td class="wide-cell">Fishing Hook</td>
 				<td class="thin-cell">1</td>
@@ -86,19 +100,122 @@
 				<td class="thin-cell">0.1 gp</td>
 				<td class="thin-cell">0 lb</td>
 				<td class="spacer-small no-border no-background"></td>
-				<td class="add-button">+</td>
+				<td class="no-border no-background"></td>
+			</tr>
+			<tr>
+				<th class="wide-cell no-right-border">Bag of Holding</th>
+				<th class="wide-cell no-left-border no-right-border">Effects <input type="checkbox" /></th>
+				<th class="no-left-border no-right-border left-align" colspan="4"> Weight Multiplier: 1.0 </th>
+				<th class="thin-cell">60.1 gp</th>
+				<th class="thin-cell">2 lb</th>
+			</tr>
+			<tr>
+				<td class="no-border no-background"></td>
+				<td class="medium-cell">Item</td>
+				<td class="wide-cell">Thieves' Tools</td>
+				<td class="thin-cell">2</td>
+				<td class="medium-cell">Belt Pouch</td>
+				<td class="wide-cell">Belt</td>
+				<td class="thin-cell">60 gp</td>
+				<td class="thin-cell">2 lb</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="no-border no-background"></td>
+			</tr>
+			<tr>
+				<td class="no-border no-background"></td>
+				<td class="medium-cell">Item</td>
+				<td class="wide-cell">Fishing Hook</td>
+				<td class="thin-cell">1</td>
+				<td class="medium-cell">Backpack</td>
+				<td class="wide-cell">Backpack</td>
+				<td class="thin-cell">0.1 gp</td>
+				<td class="thin-cell">0 lb</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="no-border no-background"></td>
+			</tr>
+			<tr>
+				<th class="wide-cell no-right-border">Camp</th>
+				<th class="wide-cell no-left-border no-right-border">Effects <input type="checkbox" /></th>
+				<th class="no-left-border no-right-border left-align" colspan="4"> Weight Multiplier: 1.0 </th>
+				<th class="thin-cell">60.1 gp</th>
+				<th class="thin-cell">2 lb</th>
+			</tr>
+			<tr>
+				<td class="no-border no-background"></td>
+				<td class="medium-cell">Item</td>
+				<td class="wide-cell">Thieves' Tools</td>
+				<td class="thin-cell">2</td>
+				<td class="medium-cell">Belt Pouch</td>
+				<td class="wide-cell">Belt</td>
+				<td class="thin-cell">60 gp</td>
+				<td class="thin-cell">2 lb</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="no-border no-background"></td>
+			</tr>
+			<tr>
+				<td class="no-border no-background"></th>
+				<td class="medium-cell">Item</td>
+				<td class="wide-cell">Fishing Hook</td>
+				<td class="thin-cell">1</td>
+				<td class="medium-cell">Backpack</td>
+				<td class="wide-cell">Backpack</td>
+				<td class="thin-cell">0.1 gp</td>
+				<td class="thin-cell">0 lb</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="no-border no-background"></td>
+			</tr>
+			<tr><td colspan="8" class="no-border"></tr>
+			<tr width="25px">
+				<td class="no-border"></td>
+				<td class="add-button">Add item</td>
+				<td colspan="6" class="no-border"></td>
 			</tr>
 		</tbody>
 	</table>
 </div>
 
-<h1 id="">Item Definitions</h1>
-<h2 id="">Weapons</h1>
+<div class="spacer50"></div>
+
+<h2 id="">Money (200.0 gp)</h1>
 <div class="table-container">
 	<table id="" class="standard">
 		<thead>
 			<tr>
-				<th class="wide-cell">Name</th>
+				<th class="medium-cell">Total</th>
+				<th class="medium-cell">Change</th>
+				<th class="ultra-wide-cell left-align">Reason</th>
+				<th class="spacer-small no-border no-background"></th>
+				<th class="no-border no-background"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="medium-cell">200 gp</td>
+				<td class="medium-cell">-150 gp</td>
+				<td class="ultra-wide-cell left-align">Starting item purchases</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="no-border no-background"></td>
+			</tr>
+			<tr>
+				<td class="medium-cell">350 gp</td>
+				<td class="medium-cell">+350 gp</td>
+				<td class="ultra-wide-cell left-align">Starting gold</td>
+				<td class="spacer-small no-border no-background"></td>
+				<td class="no-border no-background"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="spacer50"></div>
+
+<h2 id="">Item Definitions</h1>
+<h3 id="">Weapons</h1>
+<div class="table-container">
+	<table id="" class="standard">
+		<thead>
+			<tr>
+				<th colspan="2">Name</th>
 				<th class="wide-cell">Properties</th>
 				<th class="thin-cell">Dmg Dice</th>
 				<th class="medium-cell">Type</th>
@@ -111,7 +228,7 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td class="wide-cell">Longsword</td>
+				<td colspan="2">Longsword</td>
 				<td class="wide-cell"><button>Setup</button></td>
 				<td class="thin-cell">1d8</td>
 				<td class="medium-cell">Slashing</td>
@@ -122,13 +239,46 @@
 				<td class="no-border"></td>
 			</tr>
 			<tr>
+				<td colspan="2">Elvencraft Longbow</td>
+				<td class="wide-cell no-bottom-border no-right-border"><button>Setup</button></td>
+				<td class="no-left-border" colspan="3"></td>
+				<td class="thin-cell">3 lb</td>
+				<td class="medium-cell"><button>Set</button></td>
+				<td class="spacer-small no-border"></td>
+				<td class="no-border"></td>
+			</tr>
+			<tr>
+				<td class="spacer-medium no-border"></td>
 				<td class="wide-cell">Longbow</td>
-				<td class="wide-cell"><button>Setup</button></td>
+				<td class="wide-cell no-bottom-border no-top-border"></td>
 				<td class="thin-cell">1d8</td>
 				<td class="medium-cell">Piercing</td>
 				<td class="wide-cell">+1, piercing, warning <button>Edit</button></td>
-				<td class="thin-cell">3 lb</td>
-				<td class="medium-cell"><button>Set</button></td>
+				<td class="thin-cell no-border"></td>
+				<td class="medium-cell no-border"></td>
+				<td class="spacer-small no-border"></td>
+				<td class="no-border"></td>
+			</tr>
+			<tr>
+				<td class="spacer-medium no-border"></td>
+				<td class="wide-cell">Quarterstaff</td>
+				<td class="wide-cell no-bottom-border no-top-border"></td>
+				<td class="thin-cell">1d6/1d6</td>
+				<td class="medium-cell">Bludgeoning</td>
+				<td class="wide-cell">Mwk/Mwk<button>Edit</button></td>
+				<td class="thin-cell no-border"></td>
+				<td class="medium-cell no-border"></td>
+				<td class="spacer-small no-border"></td>
+				<td class="no-border"></td>
+			</tr>
+			<tr>
+				<td colspan="2">Longsword</td>
+				<td class="wide-cell"><button>Setup</button></td>
+				<td class="thin-cell">1d8</td>
+				<td class="medium-cell">Slashing</td>
+				<td class="wide-cell">none <button>Edit</button></td>
+				<td class="thin-cell">4 lb</td>
+				<td class="thin-cell">45 gp</td>
 				<td class="spacer-small no-border"></td>
 				<td class="add-button no-border">+</td>
 			</tr>
@@ -136,7 +286,7 @@
 	</table>
 </div>
 
-<h2 id="">Armor and Shields</h1>
+<h3 id="">Armor and Shields</h1>
 <div class="table-container">
 	<table id="" class="standard">
 		<thead>
@@ -182,7 +332,7 @@
 	</table>
 </div>
 
-<h2 id="">Items</h1>
+<h3 id="">Items</h1>
 <div class="table-container">
 	<table id="" class="standard">
 		<thead>

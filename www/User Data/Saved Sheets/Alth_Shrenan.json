@@ -109,10 +109,368 @@
 					{"Notes": "rainbow six: planning stage", "XP": 0}
 				]
 			},
-			"Inventory":{},
+			"Inventory":
+			{
+				"Locations":
+				[{
+					"Name": "Equipped",
+					"Effects": true,
+					"WeightMultiplier": 1.0,
+					"Contents":
+					[{
+						"Type": "Weapon",
+						"Item": "Elvencraft Longbow",
+						"Qty": 1,
+						"Slot": "",
+						"Groups":
+						[
+							"Weapons",
+							"Equipment"
+						]
+					},
+					{
+						"Type": "Weapon",
+						"Item": "Longsword",
+						"Qty": 1,
+						"Slot": "",
+						"Groups":
+						[
+							"Weapons",
+							"Equipment"
+						]
+					},
+					{
+						"Type": "Armor",
+						"Item": "Leather Armor",
+						"Qty": 1,
+						"Slot": "",
+						"Groups":
+						[
+							"Armor",
+							"Equipment"
+						]
+					},
+					{
+						"Type": "Armor",
+						"Item": "Buckler",
+						"Qty": 1,
+						"Slot": "",
+						"Groups":
+						[
+							"Armor",
+							"Equipment"
+						]
+					},
+					{
+						"Type": "Item",
+						"Item": "Backpack",
+						"Qty": 1,
+						"Slot": "",
+						"Groups":
+						[
+							"Backpack"
+						]
+					}]
+				},
+				{
+					"Name": "Backpack",
+					"Effects": false,
+					"WeightMultiplier": 1.0,
+					"Contents":
+					[{
+						"Type": "Item",
+						"Item": "Thieves' Tools",
+						"Qty": 1,
+						"Slot": "",
+						"Groups": 
+						[
+							"Backpack"
+						]
+					},
+					{
+						"Type": "Item",
+						"Item": "Trail Rations",
+						"Qty": 20,
+						"Slot": "",
+						"Groups":
+						[
+							"Food",
+							"Backpack"
+						]
+					},
+					{
+						"Type": "Item",
+						"Item": "Bag of Holding",
+						"Qty": 1,
+						"Slot": "",
+						"Groups":
+						[
+							"Bag of Holding",
+							"Backpack"
+						]
+					}]
+				},
+				{
+					"Name": "Bag of Holding",
+					"Effects": false,
+					"WeightMultiplier": 0.0,
+					"Contents":
+					[{
+						"Type": "Item",
+						"Item": "Bedroll",
+						"Qty": 1,
+						"Slot": "",
+						"Groups": 
+						[
+							"Bag of Holding",
+							"Camp"
+						]
+					},
+					{
+						"Type": "Item",
+						"Item": "Tent",
+						"Qty": 1,
+						"Slot": "",
+						"Groups":
+						[
+							"Bag of Holding",
+							"Camp"
+						]
+					}]
+				},
+				{
+					"Name": "Camp",
+					"Effects": false,
+					"WeightMultiplier": 0.0,
+					"Contents":
+					[{
+						"Type": "Item",
+						"Item": "10-foot Ladder",
+						"Qty": 1,
+						"Slot": "",
+						"Groups": []
+					},
+					{
+						"Type": "Item",
+						"Item": "Portable Ram",
+						"Qty": 1,
+						"Slot": "",
+						"Groups": []
+					}]
+				}],
+				"Transactions":
+				[{
+					"Change": -10,
+					"Reason": "Bought Portable Ram"
+				},
+				{
+					"Change": -0.05,
+					"Reason": "Bought 10-foot Ladder"
+				},
+				{
+					"Change": -10,
+					"Reason": "Bought Tent"
+				},
+				{
+					"Change": -0.1,
+					"Reason": "Bought Bedroll"
+				},
+				{
+					"Change": -2500,
+					"Reason": "Bought Bag of Holding"
+				},
+				{
+					"Change": -2,
+					"Reason": "Bought Trail Rations"
+				},
+				{
+					"Change": -30,
+					"Reason": "Bought Thieves' Tools"
+				},
+				{
+					"Change": -2,
+					"Reason": "Bought Backpack"
+				},
+				{
+					"Change": -5,
+					"Reason": "Bought Buckler"
+				},
+				{
+					"Change": -10,
+					"Reason": "Bought Leather Armor"
+				},
+				{
+					"Change": -10,
+					"Reason": "Bought Longsword"
+				},
+				{
+					"Change": -375,
+					"Reason": "Bought Elvencraft Longbow"
+				},
+				{
+					"Change": 4500,
+					"Reason": "Starting gold"
+				}],
+				"Definitions":
+				{
+					"Weapons":
+					[{
+						"Name": "Longbow",
+						"Type": "Martial",
+						"Attack_Forms":
+						[{
+							"Family": ["Longbow"],
+							"Effort": "Bow",
+							"Min_Threat": 20,
+							"Multiplier": 3,
+							"Range": 100,
+							"Dice_Num": 1,
+							"Dice_Type": 8,
+							"Type": "Piercing",
+							"Enhancements":
+							[
+								"+1"
+							]
+						},
+						{
+							"Family": ["Quarterstaff"],
+							"Effort": "Double Melee",
+							"Side_A":
+							{
+								"Min_Threat": 20,
+								"Multiplier": 3,
+								"Reach": 0,
+								"Scaling_Reach": true,
+								"Dice_Num": 1,
+								"Dice_Type": 6,
+								"Type": "Bludgeoning",
+								"Enhancements":
+								[
+									"Masterwork"
+								]
+							},
+							"Side_B":
+							{
+								"Min_Threat": 20,
+								"Multiplier": 3,
+								"Reach": 0,
+								"Scaling_Reach": true,
+								"Dice_Num": 1,
+								"Dice_Type": 6,
+								"Type": "Bludgeoning",
+								"Enhancements":
+								[
+									"Masterwork"
+								]
+							}
+						}],
+					},
+					{
+						"Name": "Longsword",
+						"Type": "Martial",
+						"Attack_Forms":
+						[{
+							"Family": ["Longsword"],
+							"Effort": "One Handed",
+							"Min_Threat": 19,
+							"Multiplier": 2,
+							"Reach": 0,
+							"Scaling_Reach": true,
+							"Dice_Num": 1,
+							"Dice_Type": 8,
+							"Type": "Slashing",
+							"Enhancements": []
+						}],
+						"Value": 10,
+						"Weight": 4
+					}],
+					"Armor":
+					[{
+						"Name": "Leather Armor",
+						"Type": "Light",
+						"Armor": 2,
+						"Max_Dex": 6,
+						"Check_Penalty": 0,
+						"Fail_Chance": 10,
+						"Enhancements": [],
+						"Weight": 15,
+						"Value": 10
+					},
+					{
+						"Name": "Buckler",
+						"Type": "Shield",
+						"Armor": 1,
+						"Check_Penalty": -1,
+						"Fail_Chance": 5,
+						"Enhancements":
+						[
+							"+1"
+						],
+						"Weight": 5,
+						"Value": 5
+					}],
+					"Items":
+					[{
+						"Name": "Backpack",
+						"Effects": [],
+						"Weight": 2,
+						"Value": 2,
+					},
+					{
+						"Name": "Thieves' Tools",
+						"Effects": 
+						[
+							"+2OL/DD"
+						],
+						"Weight": 1,
+						"Value": 30,
+					},
+					{
+						"Name": "Trail Rations",
+						"Effects": [],
+						"Weight": 1,
+						"Value": 0.5,
+					},
+					{
+						"Name": "Bag of Holding",
+						"Effects": [],
+						"Weight": 15,
+						"Value": 2500,
+					},
+					{
+						"Name": "Bedroll",
+						"Effects": [],
+						"Weight": 5,
+						"Cost": 0.1,
+					},
+					{
+						"Name": "Tent",
+						"Effects": [],
+						"Weight": 20,
+						"Cost": 10,
+					},
+					{
+						"Name": "10-foot Ladder",
+						"Effects": [],
+						"Weight": 20,
+						"Cost": 10,
+					},
+					{
+						"Name": "Portable Ram",
+						"Effects": [],
+						"Weight": 20,
+						"Cost": 10,
+					}]
+				}
+			},
 			"Race and Class" : {},
 			"Feats and Features":{},
 			"Other Effects":{}
 		}
 	}]
 }
+
+Portable Ram
+10-foot Ladder
+Tent
+Bedroll
