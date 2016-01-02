@@ -49,13 +49,13 @@
 					"HP": 8,
 					"Skills": 
 					{
-						"SM": 2,
-						"Ste": 4,
-						"Acr": 4,
-						"Con": 4,
-						"Perc": 4,
-						"K-his": 4,
-						"SL": 2
+						"Sense Motive": 2,
+						"Stealth": 4,
+						"Acrobatics": 4,
+						"Constitution": 4,
+						"Perception": 4,
+						"Knowledge (history)": 4,
+						"Speak Language": 2
 					}
 				},
 				{
@@ -63,12 +63,12 @@
 					"HP": 5,
 					"Skills": 
 					{
-						"SM": 1,
-						"Ste": 1,
-						"Acr": 1,
-						"Con": 1,
-						"Perc": 1,
-						"K-his": 1
+						"Sense Motive": 1,
+						"Stealth": 1,
+						"Acrobatics": 1,
+						"Constitution": 1,
+						"Perception": 1,
+						"Knowledge (history)": 1
 					}
 				},
 				{
@@ -76,12 +76,12 @@
 					"HP": 8,
 					"Skills": 
 					{
-						"SM": 1,
-						"Ste": 1,
-						"Acr": 1,
-						"Con": 1,
-						"Perc": 1,
-						"trick": 2
+						"Sense Motive": 1,
+						"Stealth": 1,
+						"Acrobatics": 1,
+						"Constitution": 1,
+						"Perception": 1,
+						"Skill Tricks": 2
 					}
 				},
 				{
@@ -90,11 +90,11 @@
 					"Ability_Increment": "DEX",
 					"Skills": 
 					{
-						"Ste": 1,
-						"Acr": 1,
-						"Con": 1,
-						"Perc": 1,
-						"K-his": 2
+						"Stealth": 1,
+						"Acrobatics": 1,
+						"Constitution": 1,
+						"Perception": 1,
+						"Knowledge (history)": 2
 					}
 				}],
 				"Level adjust": 0,

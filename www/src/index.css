@@ -28,9 +28,9 @@ h1.no-margin {
 	margin: 0;
 }
 
-p, h1, h2, h3 {
+p, h1, h2, h3, h4 {
 	font-family: "Helvetica", "Arial", sans-serif;
-	margin: 15px 0 0 0;
+	margin: 0;
 	padding: 0;
 	font-weight: normal;
 }
@@ -42,6 +42,7 @@ div#container {
 }
 
 h1 {
+	margin-top: 15px;
 	font-size: 32;
 	color: #341E16;
 }
@@ -178,7 +179,7 @@ table.standard th.add-button {
 
 table.standard {
 	border-collapse: collapse;
-	margin: 15px 0 0 0;
+	margin: 4px 0 0 0;
 	display: inline-block;
 }
 
@@ -197,9 +198,14 @@ table.standard td {
 	height: 25px;
 }
 
+.very-thin-cell {
+	min-width: 10px;
+	max-width: 30px;
+}
+
 .thin-cell {
 	min-width: 45px;
-	max-width: 100px;
+	max-width: 70px;
 }
 
 .medium-cell {
@@ -218,7 +224,7 @@ table.standard td {
 
 table.invisible {
 	border-collapse: collapse;
-	margin: 15px 0 0 0;
+	/*margin: 15px 0 0 0;*/
 }
 
 table.invisible td {
@@ -256,4 +262,24 @@ textarea {
 
 div.spacer50 {
 	height: 50px;
+}
+
+.highlight {
+	background-color: #C9AC75;
+}
+
+.section-head {
+	margin: 30px 0 0 0;
+}
+
+hr.heavy {
+	border: 0; 
+	border-bottom: 1px dashed #000; 
+	background: #999;
+}
+
+hr.light {
+	border: 0; 
+	border-bottom: 1px dashed #222; 
+	background: #aaa; 
 }
