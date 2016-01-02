@@ -85,12 +85,12 @@ p = function(text, id = "", classString = "") {
 	return '<p'+ifID(id)+' class="'+classString+'">'+text+'</p>\n';	
 }
 
-td = function(text, id = "", classString = "", attrString = "") {
-	return '<td '+attrString+' class="'+classString+'">'+text+'</td>\n';
+td = function(text, id = "", classes = [], attrString = "") {
+	return '<td '+attrString+ifClasses(classes)+'">'+text+'</td>\n';
 }
 
-th = function(text, id = "", classString = "", attrString = "") {
-	return '<th '+attrString+' class="'+classString+'">'+text+'</th>\n';
+th = function(text, id = "", classes = [], attrString = "") {
+	return '<th '+attrString+ifClasses(classes)+'">'+text+'</th>\n';
 }
 
 tr = function(cells, id = "", classString = "") {
@@ -98,20 +98,22 @@ tr = function(cells, id = "", classString = "") {
 }
 
 thead = function(rows, classString = "") {
-	return '<thead class="'+classString+'>'+rows+'</thead>\n';
+	return '<thead class="'+classString+'">'+rows+'</thead>\n';
 }
 
 tbody = function(rows, classString = "") {
-	return '<tbody class="'+classString+'>'+rows+'</tbody>\n';	
+	return '<tbody class="'+classString+'">'+rows+'</tbody>\n';	
 }
 
 tfoot = function(rows, classString = "") {
-	return '<tfoot class="'+classString+'>'+rows+'</tfoot>\n';
+	return '<tfoot class="'+classString+'">'+rows+'</tfoot>\n';
 }
 
 table = function(head, body, foot, id = "", classString = "") {
 	return '<table'+ifID(id)+' class="'+classString+'">'+head+body+foot+'</table>\n';
 }
+
+tsections = {'thead': thead, 'tbody': tbody, 'tfoot': tfoot};
 
 function Table(id = "", classString = "") {
 	this.id = id;
@@ -127,15 +129,11 @@ Table.prototype = {
 
 	addSection: function(type, rows = []) {
 		for(row of rows) {
-			var rowLength = sumArray($.map(row, function(cell, i) {
-				return cell.colspan;
-			}))
 			if(this.width == 0) {
-				this.width = rowLength;
+				this.width = row.length;
 			} else {
-				if (this.width != rowLength) {
+				if (this.width != row.length) {
 					console.log("Error, you're trying to add a non-rectangular array");
-					return false;
 				}
 			}
 		}
@@ -157,7 +155,7 @@ Table.prototype = {
 
 	addRow: function(section, index, cells) {
 		if(cells.length != this.width && this.width != 0) {
-			return false;
+			console.log("can't add row because it doesn't have " + this.width + " cells");
 		} else if (this.width == 0) {
 			this.width = cells.length;
 		}
@@ -173,7 +171,10 @@ Table.prototype = {
 	addCol: function(index, cells) {
 		if(index >= 0 && index <= this.width) {
 			var i = 0;
-			for(section in this.contents) {
+			for(section of ['thead', 'tbody', 'tfoot']) {
+				if(!(section in this.contents)) {
+					continue;
+				}
 				for(row of this.contents[section]) {
 					row.splice(index, 0, cells[i]);
 					i++;
@@ -202,26 +203,67 @@ Table.prototype = {
 		return section[row][col];
 	},
 
-	getHTML: function() {
-		toReturn = "<table" + ifID(this.id) + ifClasses(this.classes) + ">\n";
-
-		for(section of ['thead', 'tbody', 'tfoot']) {
-			if(section in this.contents) {
-				toReturn += '<'+section+'>';
-				for(row of this.contents[section]) {
-					toReturn += '<tr>';
-					for(cell of row) {
-						toReturn += cell.getHTML();
-					}
-					toReturn += '</tr>';
-				}
-				toReturn += '</'+section+'>';
-			}
+	renderSection: function(sectionName) {
+		if(!(sectionName in this.contents)) {
+			return '';
 		}
 
-		toReturn += '</table>';
-		return toReturn;
+		return tsections[sectionName](
+			$.map(this.contents[sectionName], function(row, i){
+				return renderRow(row);
+			}).join('')
+		);
+	},
+
+	getHTML: function() {
+		if(this.rowButton || this.colButton) {
+			var height = sumArray($.map(this.contents, function(section, sectionName) {
+				return section.length;
+			}));
+
+			this.addCol(this.width, $.map(new Array(height), function(x, i) {
+				return new TableCell('').setClasses('spacer-small no-border');
+			}));
+			this.addCol(this.width, $.map(new Array(height), function(x, i) {
+				return new TableCell('').setClasses('no-border');
+			}));
+
+			if(this.rowButton) {
+				this.getCell('tbody', -1, -1).setText('+').addClass('add-button');
+			}
+			if(this.colButton) {
+				this.getCell('thead', -1, -1).setText('+').addClass('add-button').setTh();
+			}
+		}
+		return table( 
+			this.renderSection('thead'), 
+			this.renderSection('tbody'), 
+			this.renderSection('tfoot'), 
+			this.ID, 
+			this.classes.join(' ')
+		);
 	}
+}
+
+determineColspan = function(row, cellIndex) {
+	if(cellIndex == row.length - 1) {
+		return 1;
+	}
+	if(row[cellIndex + 1] != null) {
+		return 1;
+	}
+	return 1 + determineColspan(row, cellIndex + 1);
+}
+
+renderRow = function(row) {
+	var rowText = '';
+	for(var i = 0; i < row.length; ++i) {
+		if(row[i] != null) {
+			rowText += row[i].getHTML(determineColspan(row, i));
+		}
+	}
+
+	return tr(rowText);
 }
 
 function TableCell(text = '') {
@@ -229,7 +271,6 @@ function TableCell(text = '') {
 	this.id = '';
 	this.classes = [];
 	this.isTh = false;
-	this.colSpan = 1;
 }
 
 TableCell.prototype = {
@@ -260,14 +301,9 @@ TableCell.prototype = {
 		return this;
 	},
 
-	setColspan: function(newColspan) {
-		this.colspan = newColspan;
-		return this;
-	},
-
-	getHTML: function() {
-		tag = this.isTh ? th : td;
-		attrString = (this.colspan == 1 ? '' : 'colspan="' + this.colspan + '"');
-		return tag(this.text, this.id, this.classes.join(' '), this.attrString);
+	getHTML: function(colspan) {
+		var tag = this.isTh ? th : td;
+		var attrString = (colspan == 1 ? '' : 'colspan="' + colspan + '"');
+		return tag(this.text, this.id, this.classes, attrString);
 	}
 }

@@ -33,8 +33,6 @@ BasicsTab.prototype.populateTab = function() {
 		new TableCell('Size').setClasses('medium-cell').setTh(),
 		new TableCell('Weight').setClasses('medium-cell').setTh(),
 		new TableCell('Nat. Armor').setClasses('medium-cell').setTh(),
-		new TableCell('').setClasses('spacer-small no-border no-background').setTh(),
-		new TableCell('').setClasses('no-border no-background').setTh(),
 	];
 	formsTable.addSection("thead", [formsTableHeader]);
 
@@ -52,12 +50,11 @@ BasicsTab.prototype.populateTab = function() {
 			new TableCell(theForm.Size).setClasses('medium-cell'),
 			new TableCell(theForm.Weight).setClasses('medium-cell'),
 			new TableCell(theForm.NA).setClasses('medium-cell'),
-			new TableCell('').setClasses('spacer-small no-border'),
-			new TableCell('').setClasses('no-border'),
 		])
 	})
-	formsTable.getCell("tbody", -1, -1).setClasses('add-button').setText('+');
 
+	formsTable.canAddRows();
+	
 	$(bodyTab).append(
 		div(formsTable.getHTML(), '', 'table-container')
 	);
@@ -76,32 +73,20 @@ BasicsTab.prototype.populateTab = function() {
 		'', '', 'invisible')
 	);
 
-	// build the class levels table -- but first, we need to see
-	// what skill headers are needed, so go over all the class levels
-	// and figure that out.
-	var skillNames = [];
-	for(level of this.data.Class_Levels)
-		for(skillName in level.Skills)
-			if($.inArray(skillName, skillNames) == -1)
-				skillNames.push(skillName);
-	var skillHeaders = $.map(skillNames, function(skillName, i) {
-		return new TableCell(skillName).setClasses('thin-cell').setTh();
-	})
-
 	var classLevelsTable = new Table(qn+"_Levels", "standard");
+
 	var classLevelsTableHeader = [
 		new TableCell('Classes').setClasses('wide-cell').setTh(),
 		new TableCell('Lvl').setClasses('thin-cell').setTh(),
 		new TableCell('HP rolls').setClasses('medium-cell').setTh(),
 		new TableCell('+Abl').setClasses('thin-cell').setTh(),
 	];
-	$.merge(classLevelsTableHeader, skillHeaders);
-	classLevelsTableHeader.push(new TableCell('').setClasses('spacer-small no-border no-background').setTh());
-	classLevelsTableHeader.push(new TableCell('+').setClasses('add-button no-border').setTh());
-	classLevelsTable.addSection("thead", [classLevelsTableHeader]);
 
+	classLevelsTable.addSection("thead", [classLevelsTableHeader]);
+	
 	classLevelsTracker = {}
 	classLevelsTable.addSection("tbody");
+	var characterLevel = 0;
 	$.each(this.data.Class_Levels, function(index, theLevel) {
 		var lvl = 1;
 		if(theLevel.Class in classLevelsTracker) {
@@ -116,19 +101,10 @@ BasicsTab.prototype.populateTab = function() {
 			new TableCell(theLevel.HP),
 			new TableCell("Ability_Increment" in theLevel ? theLevel.Ability_Increment : ""),
 		]
-		$.merge(newRow, $.map(skillNames, function(skillName, i) {
-			return new TableCell(skillName in theLevel.Skills ? theLevel.Skills[skillName] : "");
-		}));
-		newRow.push(new TableCell('').setClasses('spacer-small no-border'));
-		newRow.push(new TableCell('').setClasses('no-border'));
 		classLevelsTable.addRow("tbody", index, newRow)
 	})
-	classLevelsTable.getCell("tbody", -1, -1).setClasses('add-button').setText('+');
 
-	// var totalsFooter = [
-	// 	new TableCell("Character Level");
-	// ]
-	// classLevelsTable.addSection("tfoot", [totalsFooter]);
+	classLevelsTable.canAddRows();
 
 	$(bodyTab).append(
 		div(classLevelsTable.getHTML(), '', 'table-container')
