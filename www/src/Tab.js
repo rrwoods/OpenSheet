@@ -1,7 +1,5 @@
 /* Tab parents */
 
-var TAB_ARGS = 3;
-
 function Tab(args) {
 	if(args) {
 		this.initialize(args);
@@ -32,8 +30,8 @@ Tab.prototype = {
 				thisObj.populateTab(data);
 				// Show the page now, even if it isn't fully loaded
 				$("#" + qualifiedName + "-body").show();
-			}
-		}
+			};
+		};
 
 		// load the HTML
 		$("#" + qualifiedName + "-body").load("src/"+ qualifiedName.split("_").pop() +".html", onLoadCallback(this));
@@ -49,7 +47,7 @@ Tab.prototype = {
 
 	layoutSelf: function(sidebarContainer, bodyContainer) {
 		var qn = this.getQualifiedName();
-		var indent = this.owner.collapsible && this.owner.collapseHandle != this;
+		var indent = this.owner.collapsible && this.owner.collapseHandle !== this;
 
 		// Create buttons
 		$(sidebarContainer).append(
@@ -70,7 +68,7 @@ Tab.prototype = {
 			event.data.clickTab(event.data.name);
 		});
 	},
-}
+};
 
 CollapseTab.prototype = new Tab(); 
 CollapseTab.prototype.constructor = CollapseTab; 
@@ -81,7 +79,7 @@ function CollapseTab(args) {
 
 CollapseTab.prototype.clickTab = function() {
 	$("#"+this.name+'_collapse-contents').toggle("blind");
-}
+};
 
 CollapseTab.prototype.initialize = function(args) {
 	this.owner = args[0];
@@ -89,7 +87,7 @@ CollapseTab.prototype.initialize = function(args) {
 	this.name = this.owner.name;
 	this.visible = true;
 	this.data = args[2];
-}
+};
 
 function Group(name, displayName, fromFile) {
 	this.name = name;
@@ -132,11 +130,11 @@ Group.prototype = {
 			sidebarContainer = '#'+this.name+'_collapse-contents';
 		}
 
-		for (tab in this.tabs) {	
+		for (var tab in this.tabs) {	
 			this.tabs[tab].layoutSelf(sidebarContainer, bodyContainer);
 		}
 	},
-}
+};
 
 /* Tab subclasses */
 // Arguments for tab subclasses are: Arguments for Tab, then arguments for subclass

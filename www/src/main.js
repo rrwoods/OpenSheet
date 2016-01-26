@@ -13,12 +13,12 @@ OPENSHEET.file = {
 			alert("File load failed! Error " + jqXHR.status);
 		});
 	}
-}
+};
 
-sumArray = function(array)
+window.sumArray = function(array)
 {
-	return array.reduce(function(pv, cv) { return pv + cv; }, 0)
-}
+	return array.reduce(function(pv, cv) { return pv + cv; }, 0);
+};
 
 /* Ready, set, go! */
 

@@ -1,6 +1,6 @@
 /* Global */
 
-var OPENSHEET = OPENSHEET || {};
+window.OPENSHEET = window.OPENSHEET || {};
 
 /* General Layout */
 
@@ -11,18 +11,18 @@ OPENSHEET.layout = {
 
 	hideCurrentTab: function() {
 		this.lastTab = this.currentTab;
-		$("#" + this.currentTab + "-body").hide()
+		$("#" + this.currentTab + "-body").hide();
 		$("#" + this.currentTab + "-btn").removeClass("active");
 	},
 
 	parseFile: function() {
-		for (sheetPath in OPENSHEET.file.loadedFiles) {
-			for (group of OPENSHEET.file.loadedFiles[sheetPath].groups) {
-				groupName = "group"+this.loadedGroups;
-				OPENSHEET.file.data.groups[groupName] = new Group(groupName, group.name, sheetPath)
+		for (var sheetPath in OPENSHEET.file.loadedFiles) {
+			for (var group of OPENSHEET.file.loadedFiles[sheetPath].groups) {
+				var groupName = "group"+this.loadedGroups;
+				OPENSHEET.file.data.groups[groupName] = new Group(groupName, group.name, sheetPath);
 				OPENSHEET.file.data.groups[groupName].collapsible = group.name ? true : false;
-				OPENSHEET.file.data.groups[groupName].addTabs(group.tabs)
-				++this.loadedGroups;
+				OPENSHEET.file.data.groups[groupName].addTabs(group.tabs);
+				this.loadedGroups += 1;
 			}
 		}
 
@@ -30,98 +30,98 @@ OPENSHEET.layout = {
 	},
 
 	generateLayout: function() {
-		for (groupName in OPENSHEET.file.data.groups) {
+		for (var groupName in OPENSHEET.file.data.groups) {
 			OPENSHEET.file.data.groups[groupName].layoutSelf();
 		}
 	},
-}
+};
 
 // Convenience functions for layout
 
-ifID = function(text) {
-	if (text != "") {
+window.ifID = function(text) {
+	if (text !== "") {
 		return ' id="'+text+'"';
 	} else {
 		return '';
 	}
-}
+};
 
-ifClasses = function(classes = []) {
-	if(classes != "") {
+window.ifClasses = function(classes = []) {
+	if(classes !== "") {
 		var classString = classes.join(" ");
 		return ' class="'+classString+'"';
 	} else {
 		return '';	
 	} 
-}
+};
 
-makeHeader = function(level, text, id, classString = "") {
+window.makeHeader = function(level, text, id, classString = "") {
 	return '<h'+level+ifID(id)+' class="'+classString+'">'+text+'</h'+level+'>\n';
-}
+};
 
-linkCollapsible = function(activatorId, containerId, style = "blind") {
+window.linkCollapsible = function(activatorId, containerId, style = "blind") {
 	$("#" + activatorId).click(function() {
 		$('#' + containerId).toggle(style);
 	});
-}
+};
 
-h1 = function(text, id = "", classString = "") {
-	return makeHeader(1, text, id, classString)
-} 
+window.h1 = function(text, id = "", classString = "") {
+	return makeHeader(1, text, id, classString);
+};
 
-h2 = function(text, id = "", classString = "") {
-	return makeHeader(2, text, id, classString)
-}
+window.h2 = function(text, id = "", classString = "") {
+	return makeHeader(2, text, id, classString);
+};
 
-h3 = function(text, id = "", classString = "") {
-	return makeHeader(3, text, id, classString)
-}
+window.h3 = function(text, id = "", classString = "") {
+	return makeHeader(3, text, id, classString);
+};
 
-h4 = function(text, id = "", classString = "") {
-	return makeHeader(4, text, id, classString)
-}
+window.h4 = function(text, id = "", classString = "") {
+	return makeHeader(4, text, id, classString);
+};
 
-span = function(text, id = "", classString = "") {
+window.span = function(text, id = "", classString = "") {
 	return '<span'+ifID(id)+' class="'+classString+'">'+text+'</span>\n';	
-}
+};
 
-div = function(text, id = "", classString = "") {
+window.div = function(text, id = "", classString = "") {
 	return '<div'+ifID(id)+' class="'+classString+'">'+text+'</div>\n';	
-}
+};
 
-p = function(text, id = "", classString = "") {
+window.p = function(text, id = "", classString = "") {
 	return '<p'+ifID(id)+' class="'+classString+'">'+text+'</p>\n';	
-}
+};
 
-td = function(text, id = "", classes = [], attrString = "") {
+window.td = function(text, id = "", classes = [], attrString = "") {
 	return '<td '+attrString+ifClasses(classes)+'">'+text+'</td>\n';
-}
+};
 
-th = function(text, id = "", classes = [], attrString = "") {
+window.th = function(text, id = "", classes = [], attrString = "") {
 	return '<th '+attrString+ifClasses(classes)+'">'+text+'</th>\n';
-}
+};
 
-tr = function(cells, id = "", classString = "") {
+window.tr = function(cells, id = "", classString = "") {
 	return '<tr class="'+classString+'">'+cells+'</tr>\n';
-}
+};
 
-thead = function(rows, classString = "") {
+window.thead = function(rows, classString = "") {
 	return '<thead class="'+classString+'">'+rows+'</thead>\n';
-}
+};
 
-tbody = function(rows, classString = "") {
+window.tbody = function(rows, classString = "") {
 	return '<tbody class="'+classString+'">'+rows+'</tbody>\n';	
-}
+};
 
-tfoot = function(rows, classString = "") {
+window.tfoot = function(rows, classString = "") {
 	return '<tfoot class="'+classString+'">'+rows+'</tfoot>\n';
-}
+};
 
-table = function(head, body, foot, id = "", classString = "") {
+window.table = function(head, body, foot, id = "", classString = "") {
 	return '<table'+ifID(id)+' class="'+classString+'">'+head+body+foot+'</table>\n';
-}
+};
 
-tsections = {'thead': thead, 'tbody': tbody, 'tfoot': tfoot};
+var tsections = {'thead': thead, 'tbody': tbody, 'tfoot': tfoot};
 
 function Table(id = "", classString = "") {
 	this.id = id;
@@ -136,11 +136,11 @@ Table.prototype = {
 	constructor: Table,
 
 	addSection: function(type, rows = []) {
-		for(row of rows) {
-			if(this.width == 0) {
+		for(var row of rows) {
+			if(this.width === 0) {
 				this.width = row.length;
 			} else {
-				if (this.width != row.length) {
+				if (this.width !== row.length) {
 					console.log("Error, you're trying to add a non-rectangular array");
 				}
 			}
@@ -162,9 +162,9 @@ Table.prototype = {
 	},
 
 	addRow: function(section, index, cells) {
-		if(cells.length != this.width && this.width != 0) {
+		if(cells.length !== this.width && this.width !== 0) {
 			console.log("can't add row because it doesn't have " + this.width + " cells");
-		} else if (this.width == 0) {
+		} else if (this.width === 0) {
 			this.width = cells.length;
 		}
 
@@ -179,11 +179,11 @@ Table.prototype = {
 	addCol: function(index, cells) {
 		if(index >= 0 && index <= this.width) {
 			var i = 0;
-			for(section of ['thead', 'tbody', 'tfoot']) {
+			for(var section of ['thead', 'tbody', 'tfoot']) {
 				if(!(section in this.contents)) {
 					continue;
 				}
-				for(row of this.contents[section]) {
+				for(var row of this.contents[section]) {
 					row.splice(index, 0, cells[i]);
 					i++;
 				}
@@ -206,8 +206,12 @@ Table.prototype = {
 	// if row or col is negative, this uses python-style indexing
 	getCell: function(sectionName, row, col) {
 		var section = this.contents[sectionName];
-		if(row < 0) row += section.length;
-		if(col < 0) col += section[row].length;
+		if(row < 0) {
+			row += section.length;
+		}
+		if(col < 0) {
+			col += section[row].length;
+		}
 		return section[row][col];
 	},
 
@@ -217,7 +221,7 @@ Table.prototype = {
 		}
 
 		return tsections[sectionName](
-			$.map(this.contents[sectionName], function(row, i){
+			$.map(this.contents[sectionName], function(row){
 				return renderRow(row);
 			}).join('')
 		);
@@ -225,14 +229,14 @@ Table.prototype = {
 
 	getHTML: function() {
 		if(this.rowButton || this.colButton) {
-			var height = sumArray($.map(this.contents, function(section, sectionName) {
+			var height = sumArray($.map(this.contents, function(section) {
 				return section.length;
 			}));
 
-			this.addCol(this.width, $.map(new Array(height), function(x, i) {
+			this.addCol(this.width, $.map(new Array(height), function() {
 				return new TableCell('').setClasses('spacer-small no-border');
 			}));
-			this.addCol(this.width, $.map(new Array(height), function(x, i) {
+			this.addCol(this.width, $.map(new Array(height), function() {
 				return new TableCell('').setClasses('no-border');
 			}));
 
@@ -251,28 +255,28 @@ Table.prototype = {
 			this.classes.join(' ')
 		);
 	}
-}
+};
 
-determineColspan = function(row, cellIndex) {
-	if(cellIndex == row.length - 1) {
+window.determineColspan = function(row, cellIndex) {
+	if(cellIndex === row.length - 1) {
 		return 1;
 	}
-	if(row[cellIndex + 1] != null) {
+	if(row[cellIndex + 1] !== null) {
 		return 1;
 	}
 	return 1 + determineColspan(row, cellIndex + 1);
-}
+};
 
-renderRow = function(row) {
+window.renderRow = function(row) {
 	var rowText = '';
 	for(var i = 0; i < row.length; ++i) {
-		if(row[i] != null) {
+		if(row[i] !== null) {
 			rowText += row[i].getHTML(determineColspan(row, i));
 		}
 	}
 
 	return tr(rowText);
-}
+};
 
 function TableCell(text = '') {
 	this.text = text;
@@ -295,7 +299,7 @@ TableCell.prototype = {
 	},
 
 	setClasses: function(classString) {
-		this.classes = (classString == '' ? [] : classString.split(' '));
+		this.classes = (classString === '' ? [] : classString.split(' '));
 		return this;
 	},
 
@@ -311,7 +315,7 @@ TableCell.prototype = {
 
 	getHTML: function(colspan) {
 		var tag = this.isTh ? th : td;
-		var attrString = (colspan == 1 ? '' : 'colspan="' + colspan + '"');
+		var attrString = (colspan === 1 ? '' : 'colspan="' + colspan + '"');
 		return tag(this.text, this.id, this.classes, attrString);
 	}
-}
+};

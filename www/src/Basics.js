@@ -61,8 +61,8 @@ BasicsTab.prototype.populateTab = function() {
 				new TableCell(theForm.Size).setClasses('medium-cell'),
 				new TableCell(theForm.Weight).setClasses('medium-cell'),
 				new TableCell(theForm.NA).setClasses('medium-cell'),
-			])
-		})
+			]);
+		});
 
 		formsTable.canAddRows();
 		
@@ -158,7 +158,7 @@ BasicsTab.prototype.populateTab = function() {
 		var skillsAdded = 0;
 
 		$.each(this.data.Class_Levels, function(levelIndex, theLevel) {
-			$.each(theLevel.Skills, function(skillName, points) {
+			$.each(theLevel.Skills, function(skillName) {
 				if(!(skillName in skillLevelsTracker)) {
 					skillLevelsTableBody.push([new TableCell(skillName).setClasses('wide-cell').setTh()]);
 					skillLevelsTracker[skillName] = skillsAdded;
@@ -204,4 +204,4 @@ BasicsTab.prototype.populateTab = function() {
 	}
 
 	$(bodyTab).append('<br /><br />');
-}
+};
